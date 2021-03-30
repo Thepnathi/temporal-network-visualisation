@@ -1,19 +1,26 @@
 // forceLink function pushes linked node apart from one another
 
-let width = 1000, height = 800
+let width = 1000, height = 600
 
 var nodes = [
     {name: 'Bank'},
-    {name: 'B'},
-    {name: 'C'},
-    {name: 'D'},
-    {name: 'E'}
+    {name: 'Liverpool Street'},
+    {name: 'St. Pauls'},
+    {name: 'Chancery Lane'},
+    {name: 'E'},
+    {name: 'Oxford Circus'},
+    {name: 'Warren Street'},
+    {name: 'Euston'},
+    {name: 'Kings Cross St Pancras'}
    ]
 
 var links = [
     {source: 0, target: 1},
     {source: 0, target: 2},
     {source: 0, target: 3},
+    {source: 5, target: 6},
+    {source: 6, target: 7},
+    {source: 7, target: 8}
 ]
 
 const drag = simulation => {
@@ -61,11 +68,6 @@ function updateLinks() {
         .attr('x2', d => d.target.x)
         .attr('y2', d => d.target.y)
 }
-
-const color = () => {
-    const scale = d3.scaleOrdinal(d3.schemeCategory10);
-    return d => scale(d.group);
-  }
 
 function updateNodes() {
     u = d3.select('.nodes') 

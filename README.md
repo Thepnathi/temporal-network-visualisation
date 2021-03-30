@@ -2,6 +2,19 @@
 
 Currently working on a graph network slider. The slider will allow for displaying the nodes and vertices based of the availability at the given time.
 
+# Features
+
+For the visualisation tool to work. We want to pass the dataset as objects from the backend. Here are the list of parameters:
+
+* Graph network name
+* Graph network node objects
+* Graph network link objects
+
+London Underground as an example
+https://en.wikipedia.org/wiki/London_Underground
+Ideally we want the connections to be different colour based on the lines.
+
+
 # D3 Graph Network Examples
 
 Bidirected graph
