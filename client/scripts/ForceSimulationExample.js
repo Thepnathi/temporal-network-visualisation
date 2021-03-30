@@ -16,14 +16,37 @@ var links = [
     {source: 0, target: 3},
 ]
 
-function drawLayout() {
-    var simululation = d3.forceSimulation(nodes)
-        .force('charge', d3.forceManyBody())
-        .force('overlap', d3.forceCollide())
-        .force('center', d3.forceCenter(width/2, height/2))
-        .force('link', d3.forceLink().links(links).distance(100))
-        .on('tick', this.ticked);
+const drag = simulation => {
+    const dragstarted = event => {
+        if (!event.active) simulation.alphaTarget(0.3).restart();
+        event.subject.fx = event.subject.x;
+        event.subject.fy = event.subject.y;
+    }
+
+    const dragged = event => {
+        event.subject.fx = event.x;
+        event.subject.fy = event.y;
+    }
+
+    const dragended = event => {
+        if (!event.active) simulation.alphaTarget(0);
+        event.subject.fx = null;
+        event.subject.fy = null;
+    }
+
+    return d3.drag()
+        .on("start", dragstarted)
+        .on("drag", dragged)
+        .on("end", dragended)
 }
+
+var simulation = d3.forceSimulation(nodes)
+    .force('charge', d3.forceManyBody())
+    .force('overlap', d3.forceCollide())
+    .force('center', d3.forceCenter(width/2, height/2))
+    .force('link', d3.forceLink().links(links).distance(100))
+    .on('tick', this.ticked);
+
 
 function updateLinks() {
     var u = d3.select('.links') // select DOM element
@@ -39,10 +62,16 @@ function updateLinks() {
         .attr('y2', d => d.target.y)
 }
 
+const color = () => {
+    const scale = d3.scaleOrdinal(d3.schemeCategory10);
+    return d => scale(d.group);
+  }
+
 function updateNodes() {
     u = d3.select('.nodes') 
         .selectAll('text')
         .data(nodes)
+        .call(drag(simulation));
 
     u.enter()
         .append('text')
@@ -59,8 +88,4 @@ function ticked() {
     updateNodes()
 }
 
-drag = simululation => {
-
-}
-
-drawLayout()
+draw()
