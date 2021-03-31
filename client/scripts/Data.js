@@ -18,3 +18,5 @@ const links = [
     {source: 6, target: 7},
     {source: 7, target: 8}
 ]
+
+export { nodes, links }

@@ -25,6 +25,19 @@ Force Directed Graph - With Drag
 
 https://observablehq.com/@d3/force-directed-graph
 
+# How To Run
+This is the development guide to start the server. On the terminal ensure you are in the directory and run the command below:
+''' python
+python -m http.server 8000
+'''
+This will start a local server. This way we can avoid Cross-Origin issues with working with web files.
+
+# Errors on The Browser Console
+'''
+Unchecked runtime.lastError: Could not establish connection. Receiving end does not exist. 
+'''
+This is likely to cause by Chrome extension. Disabling the extension will help.
+
 ## Important Documentation
 
 

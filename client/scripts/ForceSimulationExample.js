@@ -1,24 +1,5 @@
 // forceLink function pushes linked node apart from one another
-const nodes = [
-    {name: 'Bank'},
-    {name: 'Liverpool Street'},
-    {name: 'St. Pauls'},
-    {name: 'Chancery Lane'},
-    {name: 'Random Place'},
-    {name: 'Oxford Circus'},
-    {name: 'Warren Street'},
-    {name: 'Euston'},
-    {name: 'Kings Cross St Pancras'}
-]
-
-const links = [
-    {source: 0, target: 1},
-    {source: 0, target: 2},
-    {source: 0, target: 3},
-    {source: 5, target: 6},
-    {source: 6, target: 7},
-    {source: 7, target: 8}
-]
+import {nodes, links} from './Data.js';
 
 let width = 1000, height = 600
 
@@ -55,7 +36,7 @@ const drag = simulation => {
 d3.selectAll('rect').attr('width', 10)
 
 function updateNodes() {
-    u = d3.select('.nodes') 
+    let u = d3.select('.nodes') 
         .selectAll('text')
         .data(nodes)
         .call(drag(simulation));
@@ -71,12 +52,17 @@ function updateNodes() {
         .attr('dy', d => 5)
 }
 
+function ticked() {
+    updateLinks()
+    updateNodes()
+}
+
 var simulation = d3.forceSimulation(nodes)
     .force('charge', d3.forceManyBody())
     .force('overlap', d3.forceCollide())
     .force('center', d3.forceCenter(width/2, height/2))
     .force('link', d3.forceLink().links(links).distance(100))
-    .on('tick', this.ticked);
+    .on('tick', ticked);
 
 function updateLinks() {
     var u = d3.select('.links') // select DOM element
@@ -92,9 +78,4 @@ function updateLinks() {
         .attr('y1', d => d.source.y)
         .attr('x2', d => d.target.x)
         .attr('y2', d => d.target.y)
-}
-
-function ticked() {
-    updateLinks()
-    updateNodes()
 }
