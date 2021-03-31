@@ -10,13 +10,13 @@ svg {
 circle {
     fill: cadetblue;
 }
-line {
+/* line {
     stroke: #ccc;
     stroke-width: 5;
-}
-text {
+} */
+/* text {
     text-anchor: middle;
     font-family: "Helvetica Neue", Helvetica, sans-serif;
     fill: black;
     font-size: 16px;
-}
+} */
