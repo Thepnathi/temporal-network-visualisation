@@ -2,7 +2,7 @@
 
 Currently working on a graph network slider. The slider will allow for displaying the nodes and vertices based of the availability at the given time.
 
-# Features
+## Features
 
 For the visualisation tool to work. We want to pass the dataset as objects from the backend. Here are the list of parameters:
 
@@ -14,8 +14,12 @@ London Underground as an example
 https://en.wikipedia.org/wiki/London_Underground
 Ideally we want the connections to be different colour based on the lines.
 
+* Dynamic window size - We will need to consider about the dynamic width and height of the graph window
+* Dynamic node circle and text size - Consider the size of the nodes and vertices depending on how large the graph is going to be
+* Dynamic vertex size
+* Dynamic time slider 
 
-# D3 Graph Network Examples
+## D3 Graph Network Examples
 
 Bidirected graph
 
@@ -25,14 +29,14 @@ Force Directed Graph - With Drag
 
 https://observablehq.com/@d3/force-directed-graph
 
-# How To Run
+## How To Run
 This is the development guide to start the server. On the terminal ensure you are in the directory and run the command below:
 ''' python
 python -m http.server 8000
 '''
 This will start a local server. This way we can avoid Cross-Origin issues with working with web files.
 
-# Errors on The Browser Console
+## Errors on The Browser Console
 '''
 Unchecked runtime.lastError: Could not establish connection. Receiving end does not exist. 
 '''

@@ -3,11 +3,10 @@ import {nodes, links} from './Data.js';
 
 let width = 1000, height = 600
 
-const compute_node_size = (nodes, width, height) => {
-    return ((width + height) / nodes.length) / nodes.length
-}
+const node_size = ((width + height) / nodes.length) / nodes.length
+const vertex_size = (width + height)
 
-console.log(compute_node_size(nodes, width, height))
+console.log("Hello There")
 
 const drag = simulation => {
     const dragstarted = event => {
@@ -33,8 +32,6 @@ const drag = simulation => {
         .on("end", dragended)
 }
 
-d3.selectAll('rect').attr('width', 10)
-
 function updateNodes() {
     let u = d3.select('.nodes') 
         .selectAll('text')
@@ -45,7 +42,7 @@ function updateNodes() {
         .append('text')
         .text(d => d.name)
         .merge(u)
-        .attr('font-size', 15)
+        .attr('font-size', 50)
         .attr('text-anchor', 'middle')
         .attr('x', d => d.x)
         .attr('y', d => d.y)
@@ -57,7 +54,7 @@ function ticked() {
     updateNodes()
 }
 
-var simulation = d3.forceSimulation(nodes)
+let simulation = d3.forceSimulation(nodes)
     .force('charge', d3.forceManyBody())
     .force('overlap', d3.forceCollide())
     .force('center', d3.forceCenter(width/2, height/2))
@@ -65,7 +62,7 @@ var simulation = d3.forceSimulation(nodes)
     .on('tick', ticked);
 
 function updateLinks() {
-    var u = d3.select('.links') // select DOM element
+    let u = d3.select('.links') // select DOM element
         .selectAll('line')
         .data(links)    // merge the array of data to the DOM element
 

@@ -20,7 +20,7 @@ class ForceLayoutExample {
 
     drawForceLayout() {
         var simulation = d3.forceSimulation(nodes)  // this function joins node arrays to circle elements
-        .force('charge', d3.forceManyBody()) // element attract or repel one another
+        .force('charge', d3.forceManyBody().strength(-50)) // element attract or repel one another
         .force('overlap', d3.forceCollide()) // prevents element overlapping
         .force('center', d3.forceCenter(width / 2, height /2)) // attracts elements towards a centre point
         .on('tick', this.ticked);   //  ticked is called for each simulation iteraton
