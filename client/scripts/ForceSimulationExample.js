@@ -29,6 +29,19 @@ const drag = simulation => {
         .on("end", dragended)
 }
 
+const svg = d3.select("#graph")
+            .append("svg")
+                .attr('width', width)
+                .attr('height', height)
+                .attr('id', 'Temporal-Graph-Network')
+                .call(d3.zoom().on("zoom", () => {
+                    svg.attr("transform", d3.event.transform)
+                }))
+            .append("g")
+                .attr("class", "nodes")
+            .append("g")
+                .attr("class", "links")
+
 function updateNodes() {
     let u = d3.select('.nodes') 
         .selectAll('text')
@@ -56,11 +69,6 @@ function ticked() {
     updateLinks()
     updateNodes()
 }
-
-const svg = d3.select("svg")
-            .attr('width', width)
-            .attr('height', height)
-            .attr('id', 'Temporal-Graph-Network')
 
 const simulation = d3.forceSimulation(nodes)
     .force('charge', d3.forceManyBody())
