@@ -7,14 +7,12 @@ console.log("Hello There")
 
 const drag = simulation => {
     const dragstarted = event => {
-        console.log(event)
         if (!event.active) simulation.alphaTarget(0.3).restart();
         event.subject.fx = event.subject.x;
         event.subject.fy = event.subject.y;
     }
 
     const dragged = event => {
-        console.log(event)
         event.subject.fx = event.x;
         event.subject.fy = event.y;
     }
@@ -42,15 +40,23 @@ const svg = d3.select("#graph")
                 .attr("class", "links")
 
 function updateNodes() {
-    let u = d3.select('.nodes') 
+    let node = d3.select('.nodes') 
         .selectAll('text')
         .data(nodes)
+        .on("mouseover", function (d) {
+            console.log("mouseover")            // This is currently not working, likely to do with line and node on top of each other
+            d3.select(this).select('text')
+                .text(function(d) {
+                    return "Hello There"
+                })
+                .attr('font-size', 30)
+        })
         .call(drag(simulation));
 
-    u.enter()
+    node.enter()
         .append('text')
         .text(d => d.name)
-        .merge(u)
+        .merge(node)
         .attr('font-size', 20)
         .attr('text-anchor', 'middle')
         .attr('x', function(d) {
@@ -70,7 +76,7 @@ function ticked() {
 }
 
 const simulation = d3.forceSimulation(nodes)
-    // .force('charge', d3.forceManyBody())
+    // .force('charge', d3.forceManyBody())         // We need these when not ploting graph with coordinates
     // .force('overlap', d3.forceCollide())
     // .force('center', d3.forceCenter(width/2, height/2))
     .force('link', d3.forceLink().links(links))

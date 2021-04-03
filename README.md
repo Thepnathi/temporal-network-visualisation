@@ -18,6 +18,8 @@ Ideally we want the connections to be different colour based on the lines.
 * Dynamic node circle and text size - Consider the size of the nodes and vertices depending on how large the graph is going to be
 * Dynamic vertex size
 * Dynamic time slider 
+* Extra add zoom
+* Extra add circle to each node
 
 ## D3 Graph Network Examples
 

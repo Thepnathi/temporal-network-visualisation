@@ -14,8 +14,8 @@ const nodes = [
 
 
 const links = [
-    {source: 0, target: 1},
-    {source: 0, target: 2},
+    {source: 0, target: 1, time: "8:00"},
+    {source: 0, target: 2, time: "8:15"},
 ]
 
 function convert(lat, lon){
