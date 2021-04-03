@@ -8,8 +8,8 @@ let width = 1000, height = 600
 
 const nodes = [
     {name: 'Bank', coordinates: [200, 50]},
-    {name: 'Liverpool Street', coordinates: [100, 50]},
-    {name: 'St. Pauls', coordinates: [300, 100]},
+    {name: 'Liverpool Street', coordinates: [100, 100]},
+    {name: 'St. Pauls', coordinates: [300, 150]},
 ]
 
 
