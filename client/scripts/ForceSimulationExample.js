@@ -3,9 +3,6 @@ import {nodes, links} from './Data.js';
 
 let width = 1000, height = 600
 
-const node_size = ((width + height) / nodes.length) / nodes.length
-const vertex_size = (width + height)
-
 console.log("Hello There")
 
 const drag = simulation => {
@@ -20,7 +17,7 @@ const drag = simulation => {
         event.subject.fy = event.y;
     }
 
-    const dragended = event => {
+    const dragended = event => {7
         if (!event.active) simulation.alphaTarget(0);
         event.subject.fx = null;
         event.subject.fy = null;
@@ -42,10 +39,16 @@ function updateNodes() {
         .append('text')
         .text(d => d.name)
         .merge(u)
-        .attr('font-size', 50)
+        .attr('font-size', 15)
         .attr('text-anchor', 'middle')
-        .attr('x', d => d.x)
-        .attr('y', d => d.y)
+        .attr('x', function(d) {
+            d.x = d.coordinates[0]
+            return d.x
+        })
+        .attr('y', function(d) {
+            d.y = d.coordinates[1]
+            return d.y
+        })
         .attr('dy', d => 5)
 }
 
@@ -54,10 +57,15 @@ function ticked() {
     updateNodes()
 }
 
-let simulation = d3.forceSimulation(nodes)
+const svg = d3.select("svg")
+            .attr('width', width)
+            .attr('height', height)
+            .attr('id', 'Temporal-Graph-Network')
+
+const simulation = d3.forceSimulation(nodes)
     .force('charge', d3.forceManyBody())
     .force('overlap', d3.forceCollide())
-    .force('center', d3.forceCenter(width/2, height/2))
+    // .force('center', d3.forceCenter(width/2, height/2))
     .force('link', d3.forceLink().links(links).distance(100))
     .on('tick', ticked);
 
@@ -71,8 +79,16 @@ function updateLinks() {
         .merge(u)
         .attr('stroke', '#ccc')
         .attr('stroke-width', 5)
-        .attr('x1', d => d.source.x)    // for each data point we draw line on the coordinate from source to target
-        .attr('y1', d => d.source.y)
-        .attr('x2', d => d.target.x)
-        .attr('y2', d => d.target.y)
+        .attr('x1', function(d) {       // for each data point we draw line on the coordinate from source to target
+            return d.source.x
+        })    
+        .attr('y1', function(d) {
+            return d.source.y
+        })
+        .attr('x2', function(d) {
+            return d.target.x
+        })
+        .attr('y2', function(d) {
+            return d.target.y
+        })
 }
