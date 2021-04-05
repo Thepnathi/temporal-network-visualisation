@@ -5,7 +5,7 @@ let width = 1000, height = 600
 
 console.log("Hello There")
 
-const drag = simulation => {
+const drag = simulation => { // Drag sim is not working
     const dragstarted = event => {
         if (!event.active) simulation.alphaTarget(0.3).restart();
         event.subject.fx = event.subject.x;
@@ -38,6 +38,8 @@ const svg = d3.select("#graph")
                 .attr("class", "nodes")
             .append("g")
                 .attr("class", "links")
+            .append("g")
+                .attr("class", "labels")
 
 function updateNodes() {
     let node = d3.select('.nodes') 
@@ -71,16 +73,28 @@ function updateNodes() {
 }
 
 function ticked() {
-    updateLinks()
     updateNodes()
+    addLabels()
+    updateLinks()
 }
 
-const simulation = d3.forceSimulation(nodes)
-    // .force('charge', d3.forceManyBody())         // We need these when not ploting graph with coordinates
-    // .force('overlap', d3.forceCollide())
-    // .force('center', d3.forceCenter(width/2, height/2))
-    .force('link', d3.forceLink().links(links))
-    .on('tick', ticked);
+function addLabels() {
+    let d = d3.select('.labels')
+            .selectAll("text")
+            .data(links)
+
+        d.enter()
+            .append('text')
+            .text(d => d.time)
+            .merge(d)
+            .attr('font-size', 20)
+            .attr('x', function(d) {
+                return (d.source.x + d.target.x) / 2
+            })
+            .attr('y', function(d) {
+                return (d.source.y + d.target.y) / 2
+            })
+}
 
 function updateLinks() {
     let u = d3.select('.links') // select DOM element
@@ -105,3 +119,10 @@ function updateLinks() {
             return d.target.y
         })
 }
+
+const simulation = d3.forceSimulation(nodes)
+    // .force('charge', d3.forceManyBody())         // We need these when not ploting graph with coordinates
+    // .force('overlap', d3.forceCollide())
+    // .force('center', d3.forceCenter(width/2, height/2))
+    .force('link', d3.forceLink().links(links))
+    .on('tick', ticked);
