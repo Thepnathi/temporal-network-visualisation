@@ -1,64 +1,30 @@
+import {drag} from './Drag.js';
+// import {mouseoverVertex, mouseoutVertex} from './MouseListener.js';
 import {nodes, links} from './Data.js';
 
-export class GraphNetwork {
-    constructor(name, width, height) {
-        this.name = name;
-        this.width = width;
-        this.height = height;
-    }
+let width = 1000, height = 600;
+let defaultCircleRadius = 8, defaultFontSize = 15;
+let largerCircleRadius = 16, largerFontSize = 30;
 
-    // Allows vertices and edges to be dragged around
-    // Force simulation setting still applies i.e. repulsion or attraction to other vertices
-    drag(simulation) {
-        const dragstarted = event => {
-            if (!event.active) simulation.alphaTarget(0.3).restart();
-            event.subject.fx = event.subject.x;
-            event.subject.fy = event.subject.y;
-        }
+// Initialise the SVG canvas for d3.js
+const svg = d3.select("#visualisation")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height);
 
-        const dragged = event => {
-            event.subject.fx = event.x;
-            event.subject.fy = event.y;
-        }
-    
-        const dragended = event => {
-            if (!event.active) simulation.alphaTarget(0);
-            event.subject.fx = null;
-            event.subject.fy = null;
-        }
-    
-        return d3.drag()
-            .on("start", dragstarted)
-            .on("drag", dragged)
-            .on("end", dragended);
-    }
-}
+// Initialise the force simulation settings
+const simulation = d3.forceSimulation(nodes)
+        .force('link', d3.forceLink()
+            .links(links)
+            .distance(d => 20) // Distance between two edges or links
+            .strength(0.1))     
+        .force('charge', d3.forceManyBody().strength(-50)) // strength() attraction (+) or repulsion (-)
+        .force('overlap', d3.forceCollide()) // prevent vertex overlap one another
+        .force('center', d3.forceCenter(width/2, height/2)) // center the graph 
+        .on('tick', tick);    // add vertices and edges elements to canvas
 
-// use attr and style
-export class TemporalGraphNetwork extends GraphNetwork {
-    constructor(name, width, height, nodes, links) {
-        super(name, width, height);
-        this.nodes = nodes;
-        this.links = links;
-        this.addV = this.addVertices
-    }
-
-    // Set up the SVG canvas for d3 on the div with visualisation id
-    svg = d3.select("#visualisation").append("svg")
-            .attr("width", this.width)
-            .attr("height", this.height);
-
-    simulation = d3.forceSimulation(nodes)
-            .force('link', d3.forceLink()
-                .links(links)
-                .distance(d => 20) // Distance between two vertices
-                .strength(0.1))     
-            .force('charge', d3.forceManyBody().strength(-50)) // strength() attraction (+) or repulsion (-)
-            .force('overlap', d3.forceCollide()) // prevent vertex overlap one another
-            .force('center', d3.forceCenter(this.width/2, this.height/2))
-            .on('tick', this.tick());    // compute the vertices and edges position
-
-    addEdges = () => this.svg.selectAll(".edges")
+// Initiase the edge settings and passed in the edges or links dataset
+let addEdges = svg.selectAll(".edges")
         .data(links)
         .enter()
             .append("g")
@@ -68,37 +34,56 @@ export class TemporalGraphNetwork extends GraphNetwork {
             .attr("stroke", "#ccc")
             .attr("stroke-width", 3);
 
-    addVertices = () => this.svg.selectAll(".vertices")
-            .data(nodes)
-            .enter()
-                .append("g")
-                .attr("class", "vertex")
-                .on("mouseover", this.mouseoverVertex())
-                .on("mouseout", this.mouseoutVertex())
-                .call(this.drag(this.simulation))
-                    .append("circle")   // Append circle elem for each data
-                    .attr("r", 8) // This needs to be scalable depending on network size
-                        .append("text") // Append text elem for each data
-                        .attr("dx", 12) // Position text off from circle
-                        .attr("dy", ".30em")
-                        .attr("font-size", 15)
-                        .text(d => d.name)
+let addVertices = svg.selectAll(".vertices")
+        .data(nodes)
+        .enter()
+            .append("g")
+            .attr("class", "vertex")
+            .on("mouseover", mouseoverVertex)
+            .on("mouseout", mouseoutVertex)
+            .call(drag(simulation))
 
-    tick() {
-        console.log(this.addV)
-        // this.addVertices
-        //     .attr("x1", d => d.source.x)
-        //     .attr("y1", d => d.source.y)
-        //     .attr("x2", d => d.target.x)
-        //     .attr("y2", d => d.target.y);
+addVertices.append("circle")   // Append circle elem for each data
+           .attr("r", defaultCircleRadius) // This needs to be scalable depending on network size
 
-        // this.addEdges.attr("transform", d => "translate(" + d.x + "," + d.y + ")");
-    }
+addVertices.append("text") // Append text elem for each data
+            .attr("dx", 10) // Position text off from circle
+            .attr("dy", ".30em")
+            .attr("font-size", defaultFontSize)
+            .text(d => d.name)
 
-    mouseoverVertex() {}                
-    mouseoutVertex() {}
-
-      
+function tick() {
+    addEdges
+        .attr("x1", d => d.source.x)
+        .attr("y1", d => d.source.y)
+        .attr("x2", d => d.target.x)
+        .attr("y2", d => d.target.y);
+    addVertices.attr("transform", d => "translate(" + d.x + "," + d.y + ")");
 }
 
-let a = new TemporalGraphNetwork("Temporal Graph Network",960, 500,nodes, links)
+// ##################################################################
+// # Transition for mouse hover
+// ##################################################################
+
+function mouseoverVertex() {
+    console.log("Mouse over")
+    d3.select(this).select("circle").transition()
+        .duration(500)
+        .attr("r", largerCircleRadius)
+    d3.select(this).select("text").transition() // shift the text more towards right side
+        .duration(500)
+        .attr("dx", 20)
+        .attr("dy", ".40em")
+        .attr("font-size", largerFontSize)
+}
+
+function mouseoutVertex() {
+    d3.select(this).select("circle").transition()
+        .duration(500)
+        .attr("r", defaultCircleRadius)
+    d3.select(this).select("text").transition()
+        .duration(500)
+        .attr("dx", 10)
+        .attr("dy", ".30em")
+        .attr("font-size", defaultFontSize)
+}
