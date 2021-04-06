@@ -11,13 +11,24 @@ let width = 1600, height = 800;
 let defaultCircleRadius = 8, defaultFontSize = 15;
 let largerCircleRadius = defaultCircleRadius*2, largerFontSize = defaultFontSize*2;
 
-let startTimeRange = 800, endTimeRange = 820
+let startTimeRange = 800, endTimeRange = 830
 
 // Initialise the SVG canvas for d3.js
 const svg = d3.select("#visualisation")
         .append("svg")
         .attr("width", width)
-        .attr("height", height);
+        .attr("height", height)
+
+let userDisplay = svg.append("g")
+        .attr("class", "information")
+
+userDisplay.append("text")
+        .attr("fill", "Black")
+        .attr("font-size", 24)
+        .attr("font-weight", 100)
+        .attr("x", 50)
+        .attr("y", 50)
+        .text("Time Window " + startTimeRange + " To " + endTimeRange)
 
 // Initialise the force simulation settings
 const simulation = d3.forceSimulation(nodes)
@@ -70,7 +81,6 @@ let addEdgesLabel = svg.selectAll(".edge")
 
 function tick() {
     // We only want to add the edge within the time range
-
     addEdges                // We disable the edge if it is not within the time window 
         .attr("x1", d => d.source.x)
         .attr("y1", d => d.source.y)
