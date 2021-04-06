@@ -2,9 +2,16 @@ import {drag} from './Drag.js';
 // import {mouseoverVertex, mouseoutVertex} from './MouseListener.js';
 import {nodes, links} from './Data.js';
 
-let width = 1000, height = 600;
+// Time sliders
+// Add color key/legend to show the tube line
+// Nice to add arrows
+
+let width = 1600, height = 800;
+
 let defaultCircleRadius = 8, defaultFontSize = 15;
-let largerCircleRadius = 16, largerFontSize = 30;
+let largerCircleRadius = defaultCircleRadius*2, largerFontSize = defaultFontSize*2;
+
+let startTimeRange = 800, endTimeRange = 820
 
 // Initialise the SVG canvas for d3.js
 const svg = d3.select("#visualisation")
@@ -31,7 +38,6 @@ let addEdges = svg.selectAll(".edge")
             .attr("class", "edge")
                 .append("line")
                 .attr("class", d => d.source.name + "-" + d.target.name + "-connection")
-                .attr("stroke", "#ccc")
                 .attr("stroke-width", 3);
 
 // Initiase the vertices settings and passed in the vertices or nodes dataset
@@ -58,24 +64,41 @@ let addEdgesLabel = svg.selectAll(".edge")
         .append("text")
         .attr("fill", "Black")
         .attr("font-size", 12)
+        .attr("font-weight", 100)
         .attr("dy", ".30em")
         .attr("text-anchor", "middle")
 
 function tick() {
-    addEdges
+    // We only want to add the edge within the time range
+
+    addEdges                // We disable the edge if it is not within the time window 
         .attr("x1", d => d.source.x)
         .attr("y1", d => d.source.y)
         .attr("x2", d => d.target.x)
-        .attr("y2", d => d.target.y);
+        .attr("y2", d => d.target.y)
+        .attr("stroke", function(d) {
+            if (checkTimeRange(d.start, d.end)) {
+                if (d.hasOwnProperty('color')) {
+                    return d.color
+                } 
+                return "#ccc"
+            }
+            return "white"
+        })
+        .attr("stroke-opacity", d => (checkTimeRange(d.start, d.end)) ? 1 : 0.0) // we make the line invisible if its not within the time range
+        .attr("stroke-width", 3);
 
-    addEdgesLabel
+    addEdgesLabel          // We disable any labels 
         .attr("x", d => (d.source.x + d.target.x)/2)
         .attr("y", d => (d.source.y + d.target.y)/2)
-        .attr("class", d => d.source.name + "-" + d.target.name + "-connection")
-        .text(d => d.start + "-" + d.end)
-
+        .attr("class", d => d.source.name + " to " + d.target.name + "-connection")
+        .text(d => (checkTimeRange(d.start, d.end)) ? d.start + " to " + d.end: null);
+        
     addVertices.attr("transform", d => "translate(" + d.x + "," + d.y + ")");
 }
+
+// This function checks if the link data start time and end time is within the specified time range
+const checkTimeRange = (start, end) => (start >= startTimeRange && start <= endTimeRange && end >= startTimeRange && end <= endTimeRange) ? true : false;
 
 // ##################################################################
 // # Transition for mouse hover

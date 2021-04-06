@@ -7,9 +7,9 @@ svg {
     margin: auto;
     border-style: solid;
     border-radius: 5px;
-    border-color: aquamarine;
+    border-color: white;
 }
 
 circle {
-    fill: cadetblue;
+    fill: black;
 }

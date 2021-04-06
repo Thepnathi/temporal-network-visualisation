@@ -2,6 +2,12 @@
 
 Currently working on a graph network slider. The slider will allow for displaying the nodes and vertices based of the availability at the given time.
 
+## How to Use This
+
+Dependency
+Requirement 
+Steps 
+
 ## Features
 
 For the visualisation tool to work. We want to pass the dataset as objects from the backend. Here are the list of parameters:
