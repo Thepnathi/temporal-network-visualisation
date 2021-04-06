@@ -20,6 +20,7 @@ Ideally we want the connections to be different colour based on the lines.
 * Dynamic time slider 
 * Extra add zoom
 * Extra add circle to each node
+* Add colour field in the dataset. Draw each network by different colours
 
 ## D3 Graph Network Examples
 
@@ -33,9 +34,11 @@ https://observablehq.com/@d3/force-directed-graph
 
 ## How To Run
 This is the development guide to start the server. On the terminal ensure you are in the directory and run the command below:
+
 ''' python
 python -m http.server 8000
 '''
+
 This will start a local server. This way we can avoid Cross-Origin issues with working with web files.
 
 ## Errors on The Browser Console
@@ -53,3 +56,7 @@ The d3-force README describes this as:
 This module implements a velocity Verlet numerical integrator for simulating physical forces on particles. The simulation is simplified: it assumes a constant unit time step Δt = 1 for each step, and a constant unit mass m = 1 for all particles. As a result, a force F acting on a particle is equivalent to a constant acceleration a over the time interval Δt, and can be simulated simply by adding to the particle’s velocity, which is then added to the particle’s position.
 
 https://github.com/d3/d3-force/blob/master/README.md
+
+### Learning D3.js
+
+https://www.d3indepth.com/
