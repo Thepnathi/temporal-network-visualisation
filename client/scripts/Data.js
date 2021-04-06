@@ -10,9 +10,9 @@ let nodes = [
 ]
 
 let links = [
-    {source: 0, target: 1, weight: "8:00"},
-    {source: 0, target: 2, weight: "9:00"},
-    {source: 3, target: 4, weight: "33"}
+    {source: 0, target: 1, start: "8:00", end: "8:10"},
+    {source: 0, target: 2, start: "8:05", end: "8:09"},
+    {source: 3, target: 4, start: "8:10", end: "8:17"}
 ]
 
 

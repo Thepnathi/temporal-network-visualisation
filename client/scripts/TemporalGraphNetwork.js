@@ -16,41 +16,50 @@ const svg = d3.select("#visualisation")
 const simulation = d3.forceSimulation(nodes)
         .force('link', d3.forceLink()
             .links(links)
-            .distance(d => 20) // Distance between two edges or links
+            .distance(d => 40) // Distance between two edges or links
             .strength(0.1))     
-        .force('charge', d3.forceManyBody().strength(-50)) // strength() attraction (+) or repulsion (-)
+        .force('charge', d3.forceManyBody().strength(-75)) // strength() attraction (+) or repulsion (-)
         .force('overlap', d3.forceCollide()) // prevent vertex overlap one another
         .force('center', d3.forceCenter(width/2, height/2)) // center the graph 
         .on('tick', tick);    // add vertices and edges elements to canvas
 
 // Initiase the edge settings and passed in the edges or links dataset
-let addEdges = svg.selectAll(".edges")
+let addEdges = svg.selectAll(".edge")
         .data(links)
         .enter()
             .append("g")
             .attr("class", "edge")
-            .append("line")
-            .attr("class", d => "link class") // Replace to add class name to the edge
-            .attr("stroke", "#ccc")
-            .attr("stroke-width", 3);
+                .append("line")
+                .attr("class", d => d.source.name + "-" + d.target.name + "-connection")
+                .attr("stroke", "#ccc")
+                .attr("stroke-width", 3);
 
-let addVertices = svg.selectAll(".vertices")
+// Initiase the vertices settings and passed in the vertices or nodes dataset
+let addVertices = svg.selectAll(".vertex")
         .data(nodes)
         .enter()
             .append("g")
             .attr("class", "vertex")
-            .on("mouseover", mouseoverVertex)
+            .on("mouseover", mouseoverVertex) // trigger mouse hover over events
             .on("mouseout", mouseoutVertex)
-            .call(drag(simulation))
+            .call(drag(simulation)) // iInvokes callback function on the selection
 
 addVertices.append("circle")   // Append circle elem for each data
-           .attr("r", defaultCircleRadius) // This needs to be scalable depending on network size
+        .attr("r", defaultCircleRadius) // This needs to be scalable depending on network size
 
 addVertices.append("text") // Append text elem for each data
-            .attr("dx", 10) // Position text off from circle
-            .attr("dy", ".30em")
-            .attr("font-size", defaultFontSize)
-            .text(d => d.name)
+        .attr("dx", 10) // Position text off from circle
+        .attr("dy", ".30em")
+        .attr("font-size", defaultFontSize)
+        .text(d => d.name)
+
+// For each edge class we will append a text
+let addEdgesLabel = svg.selectAll(".edge") 
+        .append("text")
+        .attr("fill", "Black")
+        .attr("font-size", 12)
+        .attr("dy", ".30em")
+        .attr("text-anchor", "middle")
 
 function tick() {
     addEdges
@@ -58,6 +67,13 @@ function tick() {
         .attr("y1", d => d.source.y)
         .attr("x2", d => d.target.x)
         .attr("y2", d => d.target.y);
+
+    addEdgesLabel
+        .attr("x", d => (d.source.x + d.target.x)/2)
+        .attr("y", d => (d.source.y + d.target.y)/2)
+        .attr("class", d => d.source.name + "-" + d.target.name + "-connection")
+        .text(d => d.start + "-" + d.end)
+
     addVertices.attr("transform", d => "translate(" + d.x + "," + d.y + ")");
 }
 
