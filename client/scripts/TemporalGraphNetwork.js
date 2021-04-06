@@ -103,3 +103,12 @@ function mouseoutVertex() {
         .attr("dy", ".30em")
         .attr("font-size", defaultFontSize)
 }
+
+function mouseOverEdgeLabel() {
+    console.log("mouse over label")
+    d3.select(this).select("text").transition()
+        .duration(500)
+        .attr("dx", 20)
+        .attr("dy", ".40em")
+        .attr("font-size", largerFontSize)
+}
