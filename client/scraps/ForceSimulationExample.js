@@ -1,5 +1,5 @@
 // forceLink function pushes linked node apart from one another
-import {nodes, links} from './Data.js';
+import {nodes, links} from '../scripts/Data.js';
 
 let width = 1000, height = 600
 
