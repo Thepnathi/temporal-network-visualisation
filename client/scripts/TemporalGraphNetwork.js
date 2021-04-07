@@ -1,5 +1,5 @@
+import {mouseoverVertex, mouseoutVertex} from './MouseHandler.js';
 import {drag} from './Drag.js';
-// import {mouseoverVertex, mouseoutVertex} from './MouseListener.js';
 import {nodes, links} from './Data.js';
 
 // Time sliders
@@ -8,10 +8,10 @@ import {nodes, links} from './Data.js';
 
 let width = 1600, height = 800;
 
-let defaultCircleRadius = 8, defaultFontSize = 15;
-let largerCircleRadius = defaultCircleRadius*2, largerFontSize = defaultFontSize*2;
+export let defaultCircleRadius = 8, defaultFontSize = 15;
+export let largerCircleRadius = defaultCircleRadius*2, largerFontSize = defaultFontSize*2;
 
-let startTimeRange = 800, endTimeRange = 830
+let startTimeRange = 800, endTimeRange = 820
 
 // Initialise the SVG canvas for d3.js
 const svg = d3.select("#visualisation")
@@ -28,7 +28,16 @@ userDisplay.append("text")
         .attr("font-weight", 100)
         .attr("x", 50)
         .attr("y", 50)
-        .text("Time Window " + startTimeRange + " To " + endTimeRange)
+        .text("Showing time window from " + startTimeRange + " to " + endTimeRange)
+
+// let selectedEdge = svg.append("g")
+//         .attr("class", "selected-edge-info")
+//             .append("")
+
+// function showNode() {
+//     userDisplay.select("text")
+//         .text("This is an update")
+// }
 
 // Initialise the force simulation settings
 const simulation = d3.forceSimulation(nodes)
@@ -36,7 +45,7 @@ const simulation = d3.forceSimulation(nodes)
             .links(links)
             .distance(d => 40) // Distance between two edges or links
             .strength(0.1))     
-        .force('charge', d3.forceManyBody().strength(-75)) // strength() attraction (+) or repulsion (-)
+        .force('charge', d3.forceManyBody().strength(-50)) // strength() attraction (+) or repulsion (-)
         .force('overlap', d3.forceCollide()) // prevent vertex overlap one another
         .force('center', d3.forceCenter(width/2, height/2)) // center the graph 
         .on('tick', tick);    // add vertices and edges elements to canvas
@@ -109,39 +118,3 @@ function tick() {
 
 // This function checks if the link data start time and end time is within the specified time range
 const checkTimeRange = (start, end) => (start >= startTimeRange && start <= endTimeRange && end >= startTimeRange && end <= endTimeRange) ? true : false;
-
-// ##################################################################
-// # Transition for mouse hover
-// ##################################################################
-
-function mouseoverVertex() {
-    console.log("Mouse over")
-    d3.select(this).select("circle").transition()
-        .duration(500)
-        .attr("r", largerCircleRadius)
-    d3.select(this).select("text").transition() // shift the text more towards right side
-        .duration(500)
-        .attr("dx", 20)
-        .attr("dy", ".40em")
-        .attr("font-size", largerFontSize)
-}
-
-function mouseoutVertex() {
-    d3.select(this).select("circle").transition()
-        .duration(500)
-        .attr("r", defaultCircleRadius)
-    d3.select(this).select("text").transition()
-        .duration(500)
-        .attr("dx", 10)
-        .attr("dy", ".30em")
-        .attr("font-size", defaultFontSize)
-}
-
-function mouseOverEdgeLabel() {
-    console.log("mouse over label")
-    d3.select(this).select("text").transition()
-        .duration(500)
-        .attr("dx", 20)
-        .attr("dy", ".40em")
-        .attr("font-size", largerFontSize)
-}

@@ -5,8 +5,8 @@ Currently working on a graph network slider. The slider will allow for displayin
 ## How to Use This
 
 Dependency
-Requirement 
-Steps 
+The only dependency is the d3 library. I am currently using version 6 of the minified web version - https://d3js.org/d3.v6.min.js
+
 
 ## Features
 

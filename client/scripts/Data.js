@@ -7,6 +7,10 @@ let nodes = [
     {name: 'Westferry', coordinates: [350, 200]},
     {name: 'Canary Wharf', coordinates: [350, 200]},
     {name: 'Heron Quays', coordinates: [350, 200]},
+    {name: 'Westferry', coordinates: [350, 200]},
+    {name: 'Canary Wharf', coordinates: [350, 200]},
+    {name: 'Heron Quays', coordinates: [350, 200]},
+    {name: 'Westferry', coordinates: [350, 200]},
 ]
 
 // Issue with algorithm works with backward start time
@@ -16,7 +20,7 @@ let links = [
     {source: 0, target: 2, start: 805, end: 809, color: "red"},
     {source: 3, target: 4, start: 810, end: 817, color: "turquoise"},
     {source: 4, target: 5, start: 810, end: 820, color: "turquoise"},
-    {source: 4, target: 5, start: 820, end: 830, color: "turquoise"}
+    {source: 4, target: 5, start: 820, end: 830, color: "turquoise"}  
 ]
 
 
