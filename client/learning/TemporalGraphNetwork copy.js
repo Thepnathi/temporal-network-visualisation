@@ -1,4 +1,4 @@
-import {nodes, links} from './Data.js';
+import {nodes, links} from './Data.js.js';
 
 export class GraphNetwork {
     constructor(name, width, height) {

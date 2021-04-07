@@ -30,14 +30,10 @@ userDisplay.append("text")
         .attr("y", 50)
         .text("Showing time window from " + startTimeRange + " to " + endTimeRange)
 
-// let selectedEdge = svg.append("g")
-//         .attr("class", "selected-edge-info")
-//             .append("")
+// document.getElementById("clickMe").onclick = doFunction;
 
-// function showNode() {
-//     userDisplay.select("text")
-//         .text("This is an update")
-// }
+//- Using an anonymous function:
+document.getElementById("rangeButton").onclick = function () { alert('hello!'); };
 
 // Initialise the force simulation settings
 const simulation = d3.forceSimulation(nodes)
