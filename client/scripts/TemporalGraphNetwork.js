@@ -67,13 +67,13 @@ document.getElementById("rangeButton").onclick = function () { alert('hello!'); 
 svg.append("defs").selectAll("marker")
     .data(["end"])      // Different link/path types can be defined here
     .enter()
-        .append("svg:marker")    // This section adds in the arrows
+        .append("svg:marker")  
             .attr("id", String)
             .attr("viewBox", "0 -5 10 10")
             .attr("refX", 15)
             .attr("refY", 0.5)
-            .attr("markerWidth", 6)
-            .attr("markerHeight", 6)
+            .attr("markerWidth", 10)
+            .attr("markerHeight", 10)
             .attr("orient", "auto")
     .append("path")
         .attr("d", "M0,-5L10,0L0,5");
@@ -82,7 +82,7 @@ svg.append("defs").selectAll("marker")
 const simulation = d3.forceSimulation(nodes)
         .force('link', d3.forceLink()
             .links(links)
-            .distance(d => 70) // Distance between two edges or links
+            .distance(d => 100) // Distance between two edges or links
             .strength(0.1))     
         .force('charge', d3.forceManyBody().strength(-300)) // strength() attraction (+) or repulsion (-)
         .force('overlap', d3.forceCollide()) // prevent vertex overlap one another
@@ -94,10 +94,11 @@ let addEdges = svg.append("g").selectAll("path")
         .data(links)
         .enter()
             .append("path")
-            .attr("class", function(d) { return "link " + d.type; })
+            .attr("class","edge")
+            // .attr("id", d => d.source.name + "-" + d.target.name)
+            .attr("id", "dayam")
             .attr("marker-end", function(d) { return "url(#end)"; });
             
-
 // Initiase the vertices settings and passed in the vertices or nodes dataset
 let addVertices = svg.selectAll(".vertex")
         .data(nodes)
@@ -117,30 +118,48 @@ addVertices.append("text") // Append text elem for each data
         .attr("font-size", defaultFontSize)
         .text(d => d.name)
 
-// For each edge class we will append a text
-let addEdgesLabel = svg.selectAll(".edge") 
-        .append("text")
-        .attr("fill", "Black")
-        .attr("font-size", 12)
-        .attr("font-weight", 100)
-        .attr("dy", ".30em")
-        .attr("text-anchor", "middle")
+// let addEdgesLabel = svg.selectAll(".edge") 
+//         .append("text")
+//         .attr("fill", "Black")
+//         .attr("font-size", 12)
+//         .attr("font-weight", 100)
+//         .attr("dy", ".30em")
+//         .attr("text-anchor", "middle")
+
+var thing = svg.append("g")
+        .attr("id", "thing")
+        .style("fill", "navy")
+
+thing.append("text")
+        .style("font-size", "20px")
+    .append("textPath")
+        .attr("xlink:href", "#dayam")
+        .attr("startOffset", "50%")	
+        .text("Super")
+
+thing.append("use")
+        .attr("xlink:href", "#dayam")
+        .style("stroke", "black")
+        .style("fill", "none");
 
 function tick() {
     // We only want to add the edge within the time range
     addEdges                // We disable the edge if it is not within the time window 
-    .attr("d", function(d) {
-        var dx = d.target.x - d.source.x,
-            dy = d.target.y - d.source.y,
-            dr = 75/d.linknum; 
-        return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
-      });
+        .attr("d", function(d) {
+            var dx = d.target.x - d.source.x,
+                dy = d.target.y - d.source.y,
+                dr = 75/d.linknum; 
+            return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
+        });
 
-    addEdgesLabel          // We disable any labels 
-        .attr("x", d => (d.source.x + d.target.x)/2)
-        .attr("y", d => (d.source.y + d.target.y)/2)
-        .attr("class", d => d.source.name + " to " + d.target.name + "-connection")
-        .text(d => (checkTimeRange(d.start, d.end)) ? d.start + " to " + d.end: null);
+    // addEdgesLabel
+    //     .append("textPath")
+    //     .attr("xlink:href", function(d) {
+    //         return "#" + d.source.name + "-" + d.target.name
+    //     })
+    //     .text(function(d) {
+    //         return d.start
+    //     })
         
     addVertices.attr("transform", d => "translate(" + d.x + "," + d.y + ")");
 }
