@@ -1,40 +1,11 @@
 import {mouseoverVertex, mouseoutVertex} from './MouseHandler.js';
 import {drag} from './Drag.js';
-// import {nodes, links} from './Data.js';
+import {nodes, links} from './Data.js';
 
-let nodes = [
-    {name: 'Bank', coordinates: [200, 50]},
-    {name: 'Liverpool Street', coordinates: [100, 100]},
-    {name: 'St. Pauls', coordinates: [300, 150]},
-]
+// Time sliders
+// Add color key/legend to show the tube line
+// Nice to add arrows
 
-let links = [
-    {source: 0, target: 1, start: 800, end: 810, color: "red"},
-    {source: 1, target: 0, start: 805, end: 809, color: "red"},
-    {source: 0, target: 2, start: 805, end: 809, color: "red"},
-    {source: 2, target: 0, start: 805, end: 809, color: "red"},
-]
-//sort links by source, then target
-links.sort(function(a,b) {
-    if (a.source > b.source) {return 1;}
-    else if (a.source < b.source) {return -1;}
-    else {
-        if (a.target > b.target) {return 1;}
-        if (a.target < b.target) {return -1;}
-        else {return 0;}
-    }
-});
-
-for (var i=0; i<links.length; i++) {
-    if (i != 0 &&
-        links[i].source == links[i-1].source &&
-        links[i].target == links[i-1].target) {
-            links[i].linknum = links[i-1].linknum + 1;
-        }
-    else {links[i].linknum = 1;};
-};
-
-console.log(links)
 let width = 1600, height = 800;
 
 export let defaultCircleRadius = 8, defaultFontSize = 15;
@@ -64,39 +35,26 @@ userDisplay.append("text")
 //- Using an anonymous function:
 document.getElementById("rangeButton").onclick = function () { alert('hello!'); };
 
-svg.append("defs").selectAll("marker")
-    .data(["end"])      // Different link/path types can be defined here
-    .enter()
-        .append("svg:marker")    // This section adds in the arrows
-            .attr("id", String)
-            .attr("viewBox", "0 -5 10 10")
-            .attr("refX", 15)
-            .attr("refY", 0.5)
-            .attr("markerWidth", 6)
-            .attr("markerHeight", 6)
-            .attr("orient", "auto")
-    .append("path")
-        .attr("d", "M0,-5L10,0L0,5");
-
 // Initialise the force simulation settings
 const simulation = d3.forceSimulation(nodes)
         .force('link', d3.forceLink()
             .links(links)
-            .distance(d => 70) // Distance between two edges or links
+            .distance(d => 40) // Distance between two edges or links
             .strength(0.1))     
-        .force('charge', d3.forceManyBody().strength(-300)) // strength() attraction (+) or repulsion (-)
+        .force('charge', d3.forceManyBody().strength(-50)) // strength() attraction (+) or repulsion (-)
         .force('overlap', d3.forceCollide()) // prevent vertex overlap one another
         .force('center', d3.forceCenter(width/2, height/2)) // center the graph 
         .on('tick', tick);    // add vertices and edges elements to canvas
 
 // Initiase the edge settings and passed in the edges or links dataset
-let addEdges = svg.append("g").selectAll("path")
+let addEdges = svg.selectAll(".edge")
         .data(links)
         .enter()
-            .append("path")
-            .attr("class", function(d) { return "link " + d.type; })
-            .attr("marker-end", function(d) { return "url(#end)"; });
-            
+            .append("g")
+            .attr("class", "edge")
+                .append("line")
+                .attr("class", d => d.source.name + "-" + d.target.name + "-connection")
+                .attr("stroke-width", 3);
 
 // Initiase the vertices settings and passed in the vertices or nodes dataset
 let addVertices = svg.selectAll(".vertex")
@@ -129,12 +87,21 @@ let addEdgesLabel = svg.selectAll(".edge")
 function tick() {
     // We only want to add the edge within the time range
     addEdges                // We disable the edge if it is not within the time window 
-    .attr("d", function(d) {
-        var dx = d.target.x - d.source.x,
-            dy = d.target.y - d.source.y,
-            dr = 75/d.linknum; 
-        return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
-      });
+        .attr("x1", d => d.source.x)
+        .attr("y1", d => d.source.y)
+        .attr("x2", d => d.target.x)
+        .attr("y2", d => d.target.y)
+        .attr("stroke", function(d) {
+            if (checkTimeRange(d.start, d.end)) {
+                if (d.hasOwnProperty('color')) {
+                    return d.color
+                } 
+                return "#ccc"
+            }
+            return "white"
+        })
+        .attr("stroke-opacity", d => (checkTimeRange(d.start, d.end)) ? 1 : 0.0) // we make the line invisible if its not within the time range
+        .attr("stroke-width", 3);
 
     addEdgesLabel          // We disable any labels 
         .attr("x", d => (d.source.x + d.target.x)/2)

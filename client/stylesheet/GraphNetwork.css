@@ -13,3 +13,9 @@ svg {
 circle {
     fill: black;
 }
+
+path.link {
+    fill: none;
+    stroke: #666;
+    stroke-width: 1.5px;
+}
