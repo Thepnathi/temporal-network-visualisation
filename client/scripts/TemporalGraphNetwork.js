@@ -75,7 +75,7 @@ let addEdges = svg.append("g")
         .enter()
               .append("path")
               .attr("class","edge")
-              .attr("id", d => d.source.name + " to " + d.target.name)
+              .attr("id", d => d.source.name + " to " + d.target.name + ":" + d.start + "-" + d.end)
               .attr("marker-end", "url(#end)");
 
 // ==================================================
@@ -140,7 +140,7 @@ function tick() {
                 });
 
         addLabels
-                .attr("xlink:href", d => "#" + d.source.name + " to " + d.target.name)
+                .attr("xlink:href", d => "#" + d.source.name + " to " + d.target.name + ":" + d.start + "-" + d.end)
                 .attr("startOffset", "40%")	
                 .text(d => d.start)
 
