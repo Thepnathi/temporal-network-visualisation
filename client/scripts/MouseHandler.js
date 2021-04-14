@@ -1,7 +1,6 @@
-import {defaultCircleRadius, largerCircleRadius, defaultFontSize, largerFontSize} from './TemporalGraphNetwork.js';
+import {defaultCircleRadius, largerCircleRadius, defaultVertexFontSize, largerVertexFontSize} from './TemporalGraphNetwork.js';
 
 export function mouseoverVertex() {
-    console.log("Mouse over")
     d3.select(this).select("circle").transition()
         .duration(500)
         .attr("r", largerCircleRadius)
@@ -9,7 +8,7 @@ export function mouseoverVertex() {
         .duration(500)
         .attr("dx", 20)
         .attr("dy", ".40em")
-        .attr("font-size", largerFontSize)
+        .attr("font-size", largerVertexFontSize)
 }
 
 export function mouseoutVertex() {
@@ -20,5 +19,5 @@ export function mouseoutVertex() {
         .duration(500)
         .attr("dx", 10)
         .attr("dy", ".30em")
-        .attr("font-size", defaultFontSize)
+        .attr("font-size", defaultVertexFontSize)
 }

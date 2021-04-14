@@ -11,11 +11,16 @@ svg {
 }
 
 circle {
-    fill: #666;
+    fill: #C0C0C0;
 }
 
 path.edge {
     fill: none;
-    stroke: #666;
+    stroke: #D0D0D0;
     stroke-width: 1.5px;
+}
+
+.vertex {
+    position: relative;
+    z-index: -1;
 }

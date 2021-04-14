@@ -9,7 +9,6 @@ let nodes = [
     {name: 'Station B', coordinates: [300, 150]},
     {name: 'Station C', coordinates: [300, 150]},
     {name: 'Station D', coordinates: [300, 150]},
-    {name: 'Station E', coordinates: [300, 150]}
 ]
 
 let links = [

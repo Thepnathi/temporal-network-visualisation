@@ -5,6 +5,7 @@ import {nodes, links} from './Data.js';
 // Time sliders
 // Add color key/legend to show the tube line
 // Nice to add arrows
+// This is the copy before we added the path, it is for 
 
 let width = 1600, height = 800;
 
