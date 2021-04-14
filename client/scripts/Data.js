@@ -1,14 +1,19 @@
 let width = 1000, height = 600
 
+export const COLOURS = ["#DF72C6", "#08B5F4", "#D5AB36", "#1F399B", "#1AB0D7", "#583974",
+                    "#FF08D6","#26145D","#7FE902","#9DFFCF","#F8A781","#FA6455","#7CD291",
+                    "#DCE51D", "#328BFE","#9EBBD6","#CCE3A6","#B6CA34","#E59776","#000000"]
+                    
+export const randomNumber = (maxNum) => Math.floor(Math.random() * maxNum)
 let nodes = [
-    {name: 'Bank', coordinates: [200, 50]},
-    {name: 'Liverpool Street', coordinates: [100, 100]},
-    {name: 'St. Pauls', coordinates: [300, 150]},
+    {name: 'Bank', coordinates: [200, 50], color: COLOURS[randomNumber(COLOURS.length)]},
+    {name: 'Liverpool Street', coordinates: [100, 100], color: COLOURS[randomNumber(COLOURS.length)]},
+    {name: 'St. Pauls', coordinates: [300, 150], color: COLOURS[randomNumber(COLOURS.length)]},
 
-    {name: 'Station A', coordinates: [300, 150]},
-    {name: 'Station B', coordinates: [300, 150]},
-    {name: 'Station C', coordinates: [300, 150]},
-    {name: 'Station D', coordinates: [300, 150]},
+    {name: 'Station A', coordinates: [300, 150], color: COLOURS[randomNumber(COLOURS.length)]},
+    {name: 'Station B', coordinates: [300, 150], color: COLOURS[randomNumber(COLOURS.length)]},
+    {name: 'Station C', coordinates: [300, 150], color: COLOURS[randomNumber(COLOURS.length)]},
+    {name: 'Station D', coordinates: [300, 150], color: COLOURS[randomNumber(COLOURS.length)]},
 ]
 
 let links = [
@@ -18,8 +23,8 @@ let links = [
     {source: 2, target: 0, start: 805, end: 809, color: "red"},
 
     {source: 3, target: 4, start: 805, end: 809, color: "red"},
-    {source: 4, target: 5, start: 805, end: 809, color: "red"},
-    {source: 5, target: 6, start: 805, end: 809, color: "red"},
+    {source: 4, target: 5, start: 810, end: 815, color: "red"},
+    {source: 5, target: 6, start: 816, end: 820, color: "red"},
 ]
 //sort links by source, then target
 links.sort(function(a,b) {
