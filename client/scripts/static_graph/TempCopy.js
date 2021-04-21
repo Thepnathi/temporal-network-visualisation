@@ -1,6 +1,6 @@
-import {mouseoverVertex, mouseoutVertex} from './MouseHandler.js';
-import {drag} from './Drag.js';
-import {nodes, links} from './Data.js';
+import {mouseoverVertex, mouseoutVertex} from '../MouseHandler.js';
+import {drag} from '../Drag.js';
+import {nodes, links} from '../Data.js';
 
 // Time sliders
 // Add color key/legend to show the tube line

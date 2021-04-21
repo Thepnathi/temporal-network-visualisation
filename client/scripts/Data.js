@@ -4,7 +4,14 @@ export const COLOURS = ["#DF72C6", "#08B5F4", "#D5AB36", "#1F399B", "#1AB0D7", "
                     "#FF08D6","#26145D","#7FE902","#9DFFCF","#F8A781","#FA6455","#7CD291",
                     "#DCE51D", "#328BFE","#9EBBD6","#CCE3A6","#B6CA34","#E59776","#000000"]
                     
-export const randomNumber = (maxNum) => Math.floor(Math.random() * maxNum)
+export function randomNumber(maxNum) {
+    return Math.floor(Math.random() * maxNum)
+}
+
+function randomColour(colours, totalColours) {
+    return colours[randomNumber(totalColours)]
+}
+
 let nodes = [
     {name: 'Bank', coordinates: [200, 50], color: COLOURS[randomNumber(COLOURS.length)]},
     {name: 'Liverpool Street', coordinates: [100, 100], color: COLOURS[randomNumber(COLOURS.length)]},

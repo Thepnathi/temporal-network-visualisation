@@ -10,14 +10,15 @@ svg {
     border-color: white;
 }
 
-/* circle {
-    fill: #C0C0C0;
-} */
+circle {
+    border: 5px solid red;
+    border-radius: 50%;
+}
 
 path.edge {
     fill: none;
-    stroke: #D0D0D0;
-    stroke-width: 1.5px;
+    stroke: rgb(20, 20, 20);
+    stroke-width: 2px;
 }
 
 .vertex {
