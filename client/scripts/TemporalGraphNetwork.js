@@ -20,7 +20,7 @@ const markerHeight = 8;
 
 let startTimeRange = 800, endTimeRange = 820
 
-function temporalGraphNetwork(startTimeRange, endTimeRange, nodes, links) {
+function temporalGraphNetwork(nodes, links) {
         // Initialise the SVG canvas for d3.js
     const svg = d3.select("#visualisation")
         .append("svg")
@@ -46,7 +46,7 @@ function temporalGraphNetwork(startTimeRange, endTimeRange, nodes, links) {
 
     const simulation = d3.forceSimulation(nodes)
         .force('link', d3.forceLink()
-        .links(links.filter(link => link.start >= startTimeRange && link.end <= endTimeRange))
+        .links(links)
         .distance(d => 60) // The length of the edges or links
         .strength(0.1))     
         .force('charge', d3.forceManyBody().strength(-200)) // strength() attraction (+) or repulsion (-)
@@ -112,25 +112,25 @@ function temporalGraphNetwork(startTimeRange, endTimeRange, nodes, links) {
      }
 }
 
-function initialiseTemporalGraphNetwork(startTimeRange, endTimeRange) {
+function initialiseTemporalGraphNetwork() {
         let input1 = document.getElementById("input1").value
         let input2 = document.getElementById("input2").value
         if (input1 && input2) {
-                input1 = 800
-                input2 = 810
+                input1 = 805
+                input2 = 805
                 let links2 = links.filter(link => link.start >= input1 && link.end <= input2)
                 d3.select("svg").remove();
-                temporalGraphNetwork(0, 1, nodes, links2) 
+                temporalGraphNetwork(nodes, links2) 
         } else {
                 d3.select("svg").remove();
-                temporalGraphNetwork(startTimeRange, endTimeRange, nodes, links)   
+                temporalGraphNetwork(nodes, links)   
         }
 }
 
-initialiseTemporalGraphNetwork(startTimeRange, endTimeRange)
+initialiseTemporalGraphNetwork()
 
 document.getElementById("btn").onclick = function() {
-        initialiseTemporalGraphNetwork(startTimeRange, endTimeRange, nodes, links)
+        initialiseTemporalGraphNetwork(nodes, links)
 } 
 
 
