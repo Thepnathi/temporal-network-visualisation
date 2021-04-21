@@ -12,8 +12,4 @@ function windowHeight() {
     return height
 }
 
-function computeGraphObjectSize(totalData) {
-
-}
-
-export {windowHeight, windowWidth, computeGraphObjectSize}
+export {windowHeight, windowWidth}
