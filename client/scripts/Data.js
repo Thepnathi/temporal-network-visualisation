@@ -23,6 +23,22 @@ let nodes = [
     {name: 'Station D', coordinates: [300, 150], color: COLOURS[randomNumber(COLOURS.length)]},
 ]
 
+ class D3Visualtion:
+    init _(graph):
+        screen
+
+    function startServer():
+        openServer
+
+    function parseJson():
+    turns to JSOn
+
+
+    function facade():
+        parseJson
+        startServer(parseJson)
+
+
 let links = [
     {source: 0, target: 1, start: 800, end: 805, color: "red"},
     {source: 0, target: 1, start: 805, end: 810, color: "red"},

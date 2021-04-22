@@ -8,6 +8,9 @@ const width = windowWidth()*0.9;
 const height = windowHeight()*0.9;   
 const pageTitle = "London Underground Network";
 
+let startTime = getStartTimeRange(links)
+let endTime = getEndTimeRange(links)
+
 const defaultCircleRadius = 9;
 const largerCircleRadius = defaultCircleRadius*2;
 const defaultVertexFontSize = 18;
@@ -20,9 +23,6 @@ const markerHeight = 8;
 const updateGraphNetworkTitle = d3.select("#temporal-graph-network-title").text(pageTitle)
 
 function updateSlider(links) {
-    const startTime = getStartTimeRange(links)
-    const endTime = getEndTimeRange(links)
-
     let updateStartLabel = d3.select("#sliderStartValue").text(startTime)
     let updateSliderStart = d3.select("#sliderStart")
         .attr("min", startTime)
@@ -126,23 +126,29 @@ function temporalGraphNetwork(nodes, links) {
      }
 }
 
-function initialiseTemporalGraphNetwork() {
-        let input1 = 800
-        let input2 = 820
-        if (input1 && input2) {
-                let updatedLinks = links.filter(link => link.start >= input1 && link.end <= input2)
-                d3.select("svg").remove();
-                temporalGraphNetwork(nodes, updatedLinks) 
-        } else {
-                temporalGraphNetwork(nodes, links)   
-        }
+function initialiseTemporalGraphNetwork(startTime, endTime) {
+        let updatedLinks = links.filter(link => link.start >= startTime && link.end <= endTime)
+        temporalGraphNetwork(nodes, updatedLinks) 
 }
 
-initialiseTemporalGraphNetwork()
+initialiseTemporalGraphNetwork(startTime, endTime)
 
-// document.getElementById("btn").onclick = function() {
-//         initialiseTemporalGraphNetwork(nodes, links)
-// } 
+const sliderStart = document.getElementById("sliderStart");
+const sliderEnd = document.getElementById("sliderEnd");
+
+sliderStart.oninput = function() {
+    let value = this.value;
+    startTime = value;
+    document.getElementById("sliderStartValue").innerHTML = value;
+    initialiseTemporalGraphNetwork(startTime, endTime)
+}
+
+sliderEnd.oninput = function() {
+    let value = this.value;
+    endTime = value;
+    document.getElementById("sliderEndValue").innerHTML = value;
+    initialiseTemporalGraphNetwork(startTime, endTime)
+}
 
 
 export {defaultCircleRadius, largerCircleRadius, defaultVertexFontSize, largerVertexFontSize}
