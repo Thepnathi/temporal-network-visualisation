@@ -54,6 +54,15 @@ for (var i=0; i<links.length; i++) {
     else {links[i].linknum = 1;};
 };
 
+function getStartTimeRange(links) {
+    return links[0].start;
+}
+
+function getEndTimeRange(links) {
+    console.log(links)
+    return links[links.length-1].end;
+}
+
 // This function is used to partition the time within the links into 4 parts
 // This will be easier for the program to filter by specific time if there are high volume of data
 function partitionDataIntoFourParts(links) {
@@ -61,4 +70,4 @@ function partitionDataIntoFourParts(links) {
     return dataPartition
 }
 
-export { nodes, links }
+export {nodes, links, getStartTimeRange, getEndTimeRange}

@@ -1,12 +1,13 @@
-var slider = document.getElementById("slider");
-var selector = document.getElementById("selector");
-var selectValue = document.getElementById("SelectValue");
-var progressBar = document.getElementById("ProgressBar");
 
-selectValue.innerHTML = slider.value;
+const sliderStart = document.getElementById("sliderStart");
+const sliderEnd = document.getElementById("sliderEnd");
 
-slider.oninput = function() {
-    selectValue.innerHTML = this.value;
-    selector.style.left = this.value + "%";
-    progressBar.style.width = this.value + "%";
+sliderStart.oninput = function() {
+    document.getElementById("sliderStartValue").innerHTML = this.value
+    console.log(this.value)
 }
+
+sliderEnd.oninput = function() {
+    console.log(this.value)
+}
+

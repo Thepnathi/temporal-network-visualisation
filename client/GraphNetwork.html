@@ -10,19 +10,19 @@
     </head>
 
     <body>
-        <h1>Temporal Graph Network</h1>
-
-        <div class="main">
-            <input type="range" min="0" max="100" value="50" id="slider"> 
-            <div id="selector">
-                <div class="SelectBtn"></div>
-                <div id="SelectValue"></div>
+        <h1 id="temporal-graph-network-title">Temporal Graph Network</h1>
+        <div id="slider-container">
+            <div>
+                <label>Start Time</label>
+                <input id="sliderStart" type="range">
+                <label id="sliderStartValue">100</label>
             </div>
-            <div id="ProgressBar"></div>
+            <div>
+                <label>End Time</label>
+                <input id="sliderEnd" type="range">
+                <label id="sliderEndValue">100</label>
+            </div>
         </div>
-        <input type="text" id="input1" name="Input">
-        <input type="text" id="input2" name="Input">
-        <input type="button" id="btn" value="Submit form">
         <div id="visualisation"></div>
     </body>
 </html>

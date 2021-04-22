@@ -1,13 +1,12 @@
 import {mouseoverVertex, mouseoutVertex} from './MouseHandler.js';
 import {drag} from './Drag.js';
-import {nodes, links} from './Data.js';
+import {nodes, links, getStartTimeRange, getEndTimeRange} from './Data.js';
 import {userDashboard} from './user/UserDashboard.js';
 import {windowWidth, windowHeight} from './Setting.js';
 
 const width = windowWidth()*0.9;
-const height = windowHeight()*0.9;
-
-const totalData = nodes.length;
+const height = windowHeight()*0.9;   
+const pageTitle = "London Underground Network";
 
 const defaultCircleRadius = 9;
 const largerCircleRadius = defaultCircleRadius*2;
@@ -17,6 +16,19 @@ const largerVertexFontSize = defaultVertexFontSize*2;
 const labelFontSize = defaultVertexFontSize * 0.8;
 const markerWidth = 8;
 const markerHeight = 8;
+
+const updateGraphNetworkTitle = d3.select("#temporal-graph-network-title")
+        .text(pageTitle)
+
+const updateSliderStart = d3.select("#sliderStart")
+        .attr("min", getStartTimeRange(links))
+        .attr("max", getEndTimeRange(links))
+        .attr("value", getStartTimeRange(links))
+
+const updateSliderEnd = d3.select("#sliderEnd")
+        .attr("min", getStartTimeRange(links))
+        .attr("max", getEndTimeRange(links))
+        .attr("value", getEndTimeRange(links))
 
 function temporalGraphNetwork(nodes, links) {
         // Initialise the SVG canvas for d3.js
@@ -41,7 +53,6 @@ function temporalGraphNetwork(nodes, links) {
         .append("path")
         .attr("d", "M0,-5L10,0L0,5");
 
-
     const simulation = d3.forceSimulation(nodes)
         .force('link', d3.forceLink()
         .links(links)
@@ -52,7 +63,6 @@ function temporalGraphNetwork(nodes, links) {
         .force('center', d3.forceCenter(width/2, height/2)) // center the graph 
         .on('tick', tick);    // add vertices and edges elements to canvas
 
-
     let addEdges = svg.append("g")
         .attr("id", "edges")
         .selectAll("path")
@@ -62,7 +72,6 @@ function temporalGraphNetwork(nodes, links) {
         .attr("class","edge")
         .attr("id", d => d.source.name + " to " + d.target.name + ":" + d.start + "-" + d.end)
         .attr("marker-end", "url(#end)");
-
 
     let addVertices = svg.selectAll(".vertex")
         .data(nodes)
@@ -111,26 +120,22 @@ function temporalGraphNetwork(nodes, links) {
 }
 
 function initialiseTemporalGraphNetwork() {
-        let input1 = parseInt(document.getElementById("input1").value)
-        let input2 = parseInt(document.getElementById("input2").value)
+        let input1 = 800
+        let input2 = 820
         if (input1 && input2) {
-                console.log(input1)
-                console.log(input2)
                 let updatedLinks = links.filter(link => link.start >= input1 && link.end <= input2)
-                console.log(updatedLinks)
                 d3.select("svg").remove();
                 temporalGraphNetwork(nodes, updatedLinks) 
         } else {
-                // d3.select("svg").remove();
                 temporalGraphNetwork(nodes, links)   
         }
 }
 
 initialiseTemporalGraphNetwork()
 
-document.getElementById("btn").onclick = function() {
-        initialiseTemporalGraphNetwork(nodes, links)
-} 
+// document.getElementById("btn").onclick = function() {
+//         initialiseTemporalGraphNetwork(nodes, links)
+// } 
 
 
 export {defaultCircleRadius, largerCircleRadius, defaultVertexFontSize, largerVertexFontSize}
