@@ -17,18 +17,25 @@ const labelFontSize = defaultVertexFontSize * 0.8;
 const markerWidth = 8;
 const markerHeight = 8;
 
-const updateGraphNetworkTitle = d3.select("#temporal-graph-network-title")
-        .text(pageTitle)
+const updateGraphNetworkTitle = d3.select("#temporal-graph-network-title").text(pageTitle)
 
-const updateSliderStart = d3.select("#sliderStart")
-        .attr("min", getStartTimeRange(links))
-        .attr("max", getEndTimeRange(links))
-        .attr("value", getStartTimeRange(links))
+function updateSlider(links) {
+    const startTime = getStartTimeRange(links)
+    const endTime = getEndTimeRange(links)
 
-const updateSliderEnd = d3.select("#sliderEnd")
-        .attr("min", getStartTimeRange(links))
-        .attr("max", getEndTimeRange(links))
-        .attr("value", getEndTimeRange(links))
+    let updateStartLabel = d3.select("#sliderStartValue").text(startTime)
+    let updateSliderStart = d3.select("#sliderStart")
+        .attr("min", startTime)
+        .attr("max", endTime)
+        .attr("value", startTime)
+    let updateEndLabel = d3.select("#sliderEndValue").text(endTime)
+    let updateSliderEnd = d3.select("#sliderEnd")
+        .attr("min", startTime)
+        .attr("max", endTime)
+        .attr("value", endTime)
+}
+
+updateSlider(links)
 
 function temporalGraphNetwork(nodes, links) {
         // Initialise the SVG canvas for d3.js

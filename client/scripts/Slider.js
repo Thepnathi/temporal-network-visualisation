@@ -8,6 +8,6 @@ sliderStart.oninput = function() {
 }
 
 sliderEnd.oninput = function() {
-    console.log(this.value)
+    document.getElementById("sliderEndValue").innerHTML = this.value
 }
 
