@@ -3,14 +3,25 @@
     <head>
         <title>Sample Temporal Graph</title>
         <script src="https://d3js.org/d3.v6.min.js" defer></script>
-        <link rel="stylesheet" href="stylesheet/GraphNetwork.css">
+        <link rel="stylesheet" href="stylesheet/graphNetwork.css">
+        <link rel="stylesheet" href="stylesheet/slider.css">
         <script type="module" src="scripts/TemporalGraphNetwork.js" defer></script>
+        <script type="module" src="scripts/Slider.js" defer></script>
     </head>
 
     <body>
         <h1>Temporal Graph Network</h1>
-        <input type="text" id="input1" name="Input"><br><br>
-        <input type="text" id="input2" name="Input"><br><br>
+
+        <div class="main">
+            <input type="range" min="0" max="100" value="50" id="slider"> 
+            <div id="selector">
+                <div class="SelectBtn"></div>
+                <div id="SelectValue"></div>
+            </div>
+            <div id="ProgressBar"></div>
+        </div>
+        <input type="text" id="input1" name="Input">
+        <input type="text" id="input2" name="Input">
         <input type="button" id="btn" value="Submit form">
         <div id="visualisation"></div>
     </body>

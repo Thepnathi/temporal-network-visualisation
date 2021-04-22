@@ -24,9 +24,9 @@ let nodes = [
 ]
 
 let links = [
-    {source: 0, target: 1, start: 800, end: 810, color: "red"},
+    {source: 0, target: 1, start: 800, end: 805, color: "red"},
     {source: 0, target: 1, start: 805, end: 810, color: "red"},
-    {source: 1, target: 0, start: 805, end: 809, color: "red"},
+    {source: 1, target: 0, start: 800, end: 805, color: "red"},
     {source: 0, target: 2, start: 805, end: 809, color: "red"},
     {source: 2, target: 0, start: 805, end: 809, color: "red"},
 
@@ -54,13 +54,11 @@ for (var i=0; i<links.length; i++) {
     else {links[i].linknum = 1;};
 };
 
-
-function convert(lat, lon){
-    let y = ((-1 * lat) + 90) * (height / 180);
-    let x = (lon + 180) * (width / 360);
-    return [x, y]
+// This function is used to partition the time within the links into 4 parts
+// This will be easier for the program to filter by specific time if there are high volume of data
+function partitionDataIntoFourParts(links) {
+    let dataPartition = 1
+    return dataPartition
 }
-
-let res = convert(51.512884,-0.091397)
 
 export { nodes, links }

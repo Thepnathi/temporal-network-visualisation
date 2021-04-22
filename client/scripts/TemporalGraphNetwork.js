@@ -18,8 +18,6 @@ const labelFontSize = defaultVertexFontSize * 0.8;
 const markerWidth = 8;
 const markerHeight = 8;
 
-let startTimeRange = 800, endTimeRange = 820
-
 function temporalGraphNetwork(nodes, links) {
         // Initialise the SVG canvas for d3.js
     const svg = d3.select("#visualisation")
@@ -113,16 +111,17 @@ function temporalGraphNetwork(nodes, links) {
 }
 
 function initialiseTemporalGraphNetwork() {
-        let input1 = document.getElementById("input1").value
-        let input2 = document.getElementById("input2").value
+        let input1 = parseInt(document.getElementById("input1").value)
+        let input2 = parseInt(document.getElementById("input2").value)
         if (input1 && input2) {
-                input1 = 805
-                input2 = 805
-                let links2 = links.filter(link => link.start >= input1 && link.end <= input2)
+                console.log(input1)
+                console.log(input2)
+                let updatedLinks = links.filter(link => link.start >= input1 && link.end <= input2)
+                console.log(updatedLinks)
                 d3.select("svg").remove();
-                temporalGraphNetwork(nodes, links2) 
+                temporalGraphNetwork(nodes, updatedLinks) 
         } else {
-                d3.select("svg").remove();
+                // d3.select("svg").remove();
                 temporalGraphNetwork(nodes, links)   
         }
 }
