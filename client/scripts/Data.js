@@ -12,15 +12,19 @@ function randomColour(colours, totalColours) {
 
 function initialiseData() {
     nodes = [
-        {name: 'Bank', coordinates: [200, 50], color: COLOURS[randomNumber(COLOURS.length)]},
-        {name: 'Liverpool Street', coordinates: [100, 100], color: COLOURS[randomNumber(COLOURS.length)]},
-        {name: 'St. Pauls', coordinates: [300, 150], color: COLOURS[randomNumber(COLOURS.length)]},
-    
-        {name: 'Station A', coordinates: [300, 150], color: COLOURS[randomNumber(COLOURS.length)]},
-        {name: 'Station B', coordinates: [300, 150], color: COLOURS[randomNumber(COLOURS.length)]},
-        {name: 'Station C', coordinates: [300, 150], color: COLOURS[randomNumber(COLOURS.length)]},
-        {name: 'Station D', coordinates: [300, 150], color: COLOURS[randomNumber(COLOURS.length)]},
+        {name: 'Bank'},
+        {name: 'Liverpool Street'},
+        {name: 'St. Pauls'},
+
+        {name: 'Station A'},
+        {name: 'Station B'},
+        {name: 'Station C'},
+        {name: 'Station D'},
     ]
+
+    for (var i = 0; i < nodes.length; i++) {
+        nodes[i].color = randomColour(COLOURS, COLOURS.length)
+    }
     
     links = [
         {source: 0, target: 1, start: 800, end: 805, color: "red"},
@@ -32,6 +36,11 @@ function initialiseData() {
         {source: 3, target: 4, start: 805, end: 809, color: "red"},
         {source: 4, target: 5, start: 810, end: 815, color: "red"},
         {source: 5, target: 6, start: 816, end: 820, color: "red"},
+
+        {source: 3, target: 4, start: 900, end: 910, color: "red"},
+        {source: 4, target: 5, start: 920, end: 930, color: "red"},
+        {source: 5, target: 6, start: 915, end: 930, color: "red"},
+
     ]
     //sort links by source, then target
     links.sort(function(a,b) {
