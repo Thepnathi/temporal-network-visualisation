@@ -1,4 +1,4 @@
-export function drag(simulation) {
+function drag(simulation) {
     const dragstarted = event => {
         if (!event.active) simulation.alphaTarget(0.3).restart();
         event.subject.fx = event.subject.x;

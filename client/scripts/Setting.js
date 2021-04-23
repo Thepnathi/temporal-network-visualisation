@@ -11,5 +11,3 @@ function windowHeight() {
     || document.body.clientHeight;
     return height
 }
-
-export {windowHeight, windowWidth}

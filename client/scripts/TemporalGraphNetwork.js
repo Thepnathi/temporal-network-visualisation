@@ -1,15 +1,18 @@
-import {mouseoverVertex, mouseoutVertex} from './MouseHandler.js';
-import {drag} from './Drag.js';
-import {nodes, links, getStartTimeRange, getEndTimeRange} from './Data.js';
-import {userDashboard} from './user/UserDashboard.js';
-import {windowWidth, windowHeight} from './Setting.js';
+// import {mouseoverVertex, mouseoutVertex} from './MouseHandler.js';
+// import {drag} from './Drag.js';
+// import {nodes, links, getStartTimeRange, getEndTimeRange} from './Data.js';
+// import {userDashboard} from './user/UserDashboard.js';
+// import {windowWidth, windowHeight} from './Setting.js';
 
 const width = windowWidth()*0.9;
 const height = windowHeight()*0.9;   
 const pageTitle = "London Underground Network";
 
-let startTime = getStartTimeRange(links)
-let endTime = getEndTimeRange(links)
+var nodes;
+var links;
+initialiseData()
+let startTime = getStartTimeRange(links);
+let endTime = getEndTimeRange(links);
 
 const defaultCircleRadius = 9;
 const largerCircleRadius = defaultCircleRadius*2;
@@ -128,7 +131,6 @@ function temporalGraphNetwork(nodes, links) {
 
 function initialiseTemporalGraphNetwork(startTime, endTime) {
         let updatedLinks = links.filter(link => link.start >= startTime && link.end <= endTime)
-        d3.select("svg").remove()
         temporalGraphNetwork(nodes, updatedLinks) 
 }
 
@@ -138,6 +140,8 @@ const sliderStart = document.getElementById("sliderStart");
 const sliderEnd = document.getElementById("sliderEnd");
 
 sliderStart.oninput = function() {
+    d3.select("svg").remove()
+    initialiseData()
     let value = this.value;
     startTime = value;
     document.getElementById("sliderStartValue").innerHTML = value;
@@ -145,11 +149,10 @@ sliderStart.oninput = function() {
 }
 
 sliderEnd.oninput = function() {
+    d3.select("svg").remove()
+    initialiseData()
     let value = this.value;
     endTime = value;
     document.getElementById("sliderEndValue").innerHTML = value;
     initialiseTemporalGraphNetwork(startTime, endTime)
 }
-
-
-export {defaultCircleRadius, largerCircleRadius, defaultVertexFontSize, largerVertexFontSize}
