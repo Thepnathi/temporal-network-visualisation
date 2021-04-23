@@ -65,7 +65,7 @@ function temporalGraphNetwork(nodes, links) {
         .links(links)
         .distance(d => 60) // The length of the edges or links
         .strength(0.1))     
-        .force('charge', d3.forceManyBody().strength(-200)) // strength() attraction (+) or repulsion (-)
+        .force('charge', d3.forceManyBody().strength(-150)) // strength() attraction (+) or repulsion (-)
         .force('overlap', d3.forceCollide()) // prevent vertex overlap one another
         .force('center', d3.forceCenter(width/2, height/2)) // center the graph 
         .on('tick', tick);    // add vertices and edges elements to canvas
@@ -128,6 +128,7 @@ function temporalGraphNetwork(nodes, links) {
 
 function initialiseTemporalGraphNetwork(startTime, endTime) {
         let updatedLinks = links.filter(link => link.start >= startTime && link.end <= endTime)
+        d3.select("svg").remove()
         temporalGraphNetwork(nodes, updatedLinks) 
 }
 
