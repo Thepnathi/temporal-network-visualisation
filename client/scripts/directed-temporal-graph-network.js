@@ -1,9 +1,3 @@
-// import {mouseoverVertex, mouseoutVertex} from './MouseHandler.js';
-// import {drag} from './Drag.js';
-// import {nodes, links, getStartTimeRange, getEndTimeRange} from './Data.js';
-// import {userDashboard} from './user/UserDashboard.js';
-// import {windowWidth, windowHeight} from './Setting.js';
-
 const width = windowWidth()*0.9;
 const height = windowHeight()*0.9;   
 const pageTitle = "London Underground Network";
@@ -16,15 +10,19 @@ let endTime = getEndTimeRange(links);
 
 const defaultCircleRadius = 9;
 const largerCircleRadius = defaultCircleRadius*2;
-const defaultVertexFontSize = 18;
+const defaultVertexFontSize = defaultCircleRadius*2;
 const largerVertexFontSize = defaultVertexFontSize*2;
 
-const labelFontSize = defaultVertexFontSize * 0.8;
-const markerWidth = 8;
-const markerHeight = 8;
+const labelFontSize = defaultVertexFontSize * 0.5;
+const markerWidth = 4;
+const markerHeight = 4;
+
+let verticeLabelSwitch = true;
+let edgeLabelSwitch = true;
 
 const updateGraphNetworkTitle = d3.select("#temporal-graph-network-title").text(pageTitle)
 
+// Initialise the time range slider
 function updateSlider(links) {
     let updateStartLabel = d3.select("#sliderStartValue").text(startTime)
     let updateSliderStart = d3.select("#sliderStart")
@@ -40,7 +38,7 @@ function updateSlider(links) {
 
 updateSlider(links)
 
-function temporalGraphNetwork(nodes, links) {
+function temporalGraphNetwork(nodes, links, enableVerticeLabel, enableEdgeLabel) {
         // Initialise the SVG canvas for d3.js
     const svg = d3.select("#visualisation")
         .append("svg")
@@ -54,8 +52,8 @@ function temporalGraphNetwork(nodes, links) {
         .append("svg:marker")  
                 .attr("id", String)
                 .attr("viewBox", "0 -5 10 10")
-                .attr("refX", 15)
-                .attr("refY", 0)
+                .attr("refX", 20)
+                .attr("refY", -1)
                 .attr("markerWidth", markerWidth)
                 .attr("markerHeight", markerHeight)
                 .attr("orient", "auto")
@@ -66,9 +64,9 @@ function temporalGraphNetwork(nodes, links) {
     const simulation = d3.forceSimulation(nodes)
         .force('link', d3.forceLink()
         .links(links)
-        .distance(d => 60) // The length of the edges or links
+        .distance(d => 50) // The length of the edges or links
         .strength(0.1))     
-        .force('charge', d3.forceManyBody().strength(-150)) // strength() attraction (+) or repulsion (-)
+        .force('charge', d3.forceManyBody().strength(-100)) // strength() attraction (+) or repulsion (-)
         .force('overlap', d3.forceCollide()) // prevent vertex overlap one another
         .force('center', d3.forceCenter(width/2, height/2)) // center the graph 
         .on('tick', tick);    // add vertices and edges elements to canvas
@@ -99,8 +97,9 @@ function temporalGraphNetwork(nodes, links) {
         .attr("dx", 10) // Position text off from circle
         .attr("dy", ".30em")
         .attr("font-size", defaultVertexFontSize)
-        .attr("font-weight", 800)
-        .text(d => d.name)
+        .attr("font-weight", 400)
+        .attr("opacity", 0.5)
+        .text(d => enableVerticeLabel ? d.name : "")
 
     let addLabels = svg.append("g")
         .attr("id", "labels")
@@ -110,6 +109,7 @@ function temporalGraphNetwork(nodes, links) {
         .enter()
         .append("text")
         .attr("class", "label")
+        .attr("dy", -2)
         .attr("font-size", labelFontSize)
                 .append("textPath")
 
@@ -122,7 +122,8 @@ function temporalGraphNetwork(nodes, links) {
         addLabels
                 .attr("xlink:href", d => "#" + d.source.name + " to " + d.target.name + ":" + d.start + "-" + d.end)
                 .attr("startOffset", "40%")	
-                .text(d => d.start)
+                .text(d => enableEdgeLabel ? d.start : "")
+
         addVertices
                 .attr("fill", d => d.color)
                 .attr("transform", d => "translate(" + d.x + "," + d.y + ")")
@@ -131,28 +132,7 @@ function temporalGraphNetwork(nodes, links) {
 
 function initialiseTemporalGraphNetwork(startTime, endTime) {
         let updatedLinks = links.filter(link => link.start >= startTime && link.end <= endTime)
-        temporalGraphNetwork(nodes, updatedLinks) 
+        temporalGraphNetwork(nodes, updatedLinks, verticeLabelSwitch, edgeLabelSwitch) 
 }
 
 initialiseTemporalGraphNetwork(startTime, endTime)
-
-const sliderStart = document.getElementById("sliderStart");
-const sliderEnd = document.getElementById("sliderEnd");
-
-sliderStart.oninput = function() {
-    d3.select("svg").remove()
-    initialiseData()
-    let value = this.value;
-    startTime = value;
-    document.getElementById("sliderStartValue").innerHTML = value;
-    initialiseTemporalGraphNetwork(startTime, endTime)
-}
-
-sliderEnd.oninput = function() {
-    d3.select("svg").remove()
-    initialiseData()
-    let value = this.value;
-    endTime = value;
-    document.getElementById("sliderEndValue").innerHTML = value;
-    initialiseTemporalGraphNetwork(startTime, endTime)
-}

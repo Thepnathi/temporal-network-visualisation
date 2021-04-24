@@ -8,6 +8,13 @@ svg {
     border: 2px solid #fff;
 }
 
+button {
+    margin: 10px auto;
+    border: none;
+    display: inline-block;
+    padding: 5px;
+}
+
 circle {
     border: 5px solid red;
     border-radius: 50%;

@@ -10,18 +10,19 @@ function randomColour(colours, totalColours) {
     return colours[randomNumber(totalColours)]
 }
 
+
 function initialiseData() {
     nodes = [
         {name: 'Bank'},
         {name: 'Liverpool Street'},
         {name: 'St. Pauls'},
-
+    
         {name: 'Station A'},
         {name: 'Station B'},
         {name: 'Station C'},
         {name: 'Station D'},
     ]
-
+    
     for (var i = 0; i < nodes.length; i++) {
         nodes[i].color = randomColour(COLOURS, COLOURS.length)
     }

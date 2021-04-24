@@ -1,5 +1,3 @@
-// import {defaultCircleRadius, largerCircleRadius, defaultVertexFontSize, largerVertexFontSize} from './TemporalGraphNetwork.js';
-
 function mouseoverVertex() {
     d3.select(this).select("circle").transition() // Transition the radius of circle to bigger size
         .duration(500)
