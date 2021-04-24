@@ -45,6 +45,8 @@ function temporalGraphNetwork(nodes, links, enableVerticeLabel, enableEdgeLabel)
                 .attr("width", width)
                 .attr("height", height)
 
+    userDashboard(svg, startTime, endTime, nodes.length, links.length)
+
         // Create the arrow head
     svg.append("defs").selectAll("marker")
         .data(["end"])      // Different link/path types can be defined here
