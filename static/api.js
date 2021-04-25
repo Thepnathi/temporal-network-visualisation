@@ -1,9 +1,27 @@
-async function get_dataset() {
-    let response = await fetch("https://localhost:5000/dataset");
-    let jsonResult = await response.json();
-    console.log(jsonResult)
-    return jsonResult
+var vertices;
+var edges;
+
+async function getDataset() {
+    let response = await fetch("http://localhost:5000/dataset");
+    let result = await response.json();
+    edges = result.edges;
+    vertices = result.nodes;
+    return result;
 }
 
-res = get_dataset()
-console.log(res)
+async function dealDataset() {
+    const data = await getDataset();
+    let verticeMap = {}
+    for (var i = 0; i < vertices.length; i++) {
+        verticeMap[vertices[i]] = i
+    }
+    console.log(verticeMap)
+    for (var i = 0; i < edges.length; i++) {
+        edges[i].source = verticeMap[edges[i].source];
+        edges[i].target = verticeMap[edges[i].target];
+    }
+    console.log(edges)
+
+}
+
+dealDataset()

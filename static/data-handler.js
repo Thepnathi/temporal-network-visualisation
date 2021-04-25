@@ -74,7 +74,6 @@ function getStartTimeRange(links) {
 }
 
 function getEndTimeRange(links) {
-    console.log(links)
     return links[links.length-1].end;
 }
 
