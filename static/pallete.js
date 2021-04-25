@@ -9,4 +9,3 @@ function randomNumber(maxNum) {
 function randomColour(colours, totalColours) {
     return colours[randomNumber(totalColours)]
 }
-

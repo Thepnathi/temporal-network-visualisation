@@ -2,11 +2,11 @@ const width = windowWidth()*0.9;
 const height = windowHeight()*0.9;   
 const pageTitle = "London Underground Network";
 
-var nodes;
-var links;
-initialiseData()
-let startTime = getStartTimeRange(links);
-let endTime = getEndTimeRange(links);
+var vertices;
+var edges;
+
+let startTime;
+let endTime;
 
 const defaultCircleRadius = 9;
 const largerCircleRadius = defaultCircleRadius*2;
@@ -23,7 +23,7 @@ let edgeLabelSwitch = true;
 const updateGraphNetworkTitle = d3.select("#temporal-graph-network-title").text(pageTitle)
 
 // Initialise the time range slider
-function updateSlider(links) {
+function updateSlider(startTime, endTime) {
     let updateStartLabel = d3.select("#sliderStartValue").text(startTime)
     let updateSliderStart = d3.select("#sliderStart")
         .attr("min", startTime)
@@ -36,16 +36,25 @@ function updateSlider(links) {
         .attr("value", endTime)
 }
 
-updateSlider(links)
+async function main() {
+    await initialiseData()
+    startTime = getStartTimeRange(edges)
+    endTime = getEndTimeRange(edges)
+    updateSlider(startTime, endTime)
+    initialiseTemporalGraphNetwork(startTime, endTime)
+}
 
-function temporalGraphNetwork(nodes, links, enableVerticeLabel, enableEdgeLabel) {
+main()
+
+function temporalGraphNetwork(vertices, edges, enableVerticeLabel, enableEdgeLabel) {
+    // updateSlider(edges)
         // Initialise the SVG canvas for d3.js
     const svg = d3.select("#visualisation")
         .append("svg")
                 .attr("width", width)
                 .attr("height", height)
 
-    userDashboard(svg, startTime, endTime, nodes.length, links.length)
+    userDashboard(svg, startTime, endTime, vertices.length, edges.length)
 
         // Create the arrow head
     svg.append("defs").selectAll("marker")
@@ -63,12 +72,12 @@ function temporalGraphNetwork(nodes, links, enableVerticeLabel, enableEdgeLabel)
         .append("path")
         .attr("d", "M0,-5L10,0L0,5");
 
-    const simulation = d3.forceSimulation(nodes)
+    const simulation = d3.forceSimulation(vertices)
         .force('link', d3.forceLink()
-        .links(links)
+        .links(edges)
         .distance(d => 50) // The length of the edges or links
         .strength(0.1))     
-        .force('charge', d3.forceManyBody().strength(-100)) // strength() attraction (+) or repulsion (-)
+        .force('charge', d3.forceManyBody().strength(-50)) // strength() attraction (+) or repulsion (-)
         .force('overlap', d3.forceCollide()) // prevent vertex overlap one another
         .force('center', d3.forceCenter(width/2, height/2)) // center the graph 
         .on('tick', tick);    // add vertices and edges elements to canvas
@@ -76,7 +85,7 @@ function temporalGraphNetwork(nodes, links, enableVerticeLabel, enableEdgeLabel)
     let addEdges = svg.append("g")
         .attr("id", "edges")
         .selectAll("path")
-        .data(links)
+        .data(edges)
         .enter()
         .append("path")
         .attr("class","edge")
@@ -84,7 +93,7 @@ function temporalGraphNetwork(nodes, links, enableVerticeLabel, enableEdgeLabel)
         .attr("marker-end", "url(#end)");
 
     let addVertices = svg.selectAll(".vertex")
-        .data(nodes)
+        .data(vertices)
         .enter()
         .append("g")
         .attr("class", "vertex")
@@ -107,7 +116,7 @@ function temporalGraphNetwork(nodes, links, enableVerticeLabel, enableEdgeLabel)
         .attr("id", "labels")
         .style("fill", "black")
         .selectAll("text")
-        .data(links)
+        .data(edges)
         .enter()
         .append("text")
         .attr("class", "label")
@@ -133,8 +142,7 @@ function temporalGraphNetwork(nodes, links, enableVerticeLabel, enableEdgeLabel)
 }
 
 function initialiseTemporalGraphNetwork(startTime, endTime) {
-        let updatedLinks = links.filter(link => link.start >= startTime && link.end <= endTime)
-        temporalGraphNetwork(nodes, updatedLinks, verticeLabelSwitch, edgeLabelSwitch) 
+        let updatedLinks = edges.filter(link => link.start >= startTime && link.end <= endTime)
+        temporalGraphNetwork(vertices, updatedLinks, verticeLabelSwitch, edgeLabelSwitch) 
 }
 
-initialiseTemporalGraphNetwork(startTime, endTime)
