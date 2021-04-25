@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sample Temporal Graph</title>
+    </head>
+
+    <body>
+        <h1 id="temporal-graph-network-title">A2Temporal Graph Network</h1>
+        <div id="slider-container">
+            <div>
+                <label>Start Time</label>
+                <input id="sliderStart" type="range">
+                <label id="sliderStartValue">100</label>
+            </div>
+            <div>
+                <label>End Time</label>
+                <input id="sliderEnd" type="range">
+                <label id="sliderEndValue">100</label>
+            </div>
+        </div>
+        <div id="visualisation"></div>
+    </body>
+    <script>
+        async function get_dataset() {
+            let response = await fetch("http://localhost:5000/dataset");
+            let jsonResult = await response.json();
+            console.log(jsonResult)
+            return jsonResult
+        }
+
+        res = get_dataset()
+        console.log(res)
+    </script>
+</html>
+
+

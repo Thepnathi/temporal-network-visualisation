@@ -29,7 +29,12 @@ function initialiseData() {
     
     links = [
         {source: 0, target: 1, start: 800, end: 805, color: "red"},
-        {source: 0, target: 1, start: 805, end: 810, color: "red"},
+        {source: 0, target: 1, start: 801, end: 805, color: "red"},
+        {source: 0, target: 1, start: 802, end: 805, color: "red"},
+        {source: 0, target: 1, start: 803, end: 805, color: "red"},
+        {source: 0, target: 1, start: 804, end: 805, color: "red"},
+        {source: 0, target: 1, start: 830, end: 835, color: "red"},
+        {source: 0, target: 1, start: 806, end: 810, color: "red"},
         {source: 1, target: 0, start: 800, end: 805, color: "red"},
         {source: 0, target: 2, start: 805, end: 809, color: "red"},
         {source: 2, target: 0, start: 805, end: 809, color: "red"},
