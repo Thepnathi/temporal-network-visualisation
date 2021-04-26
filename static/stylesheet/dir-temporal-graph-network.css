@@ -22,7 +22,7 @@ circle {
 
 path.edge {
     fill: none;
-    stroke: #191919;
+    /* stroke: #191919; */
     stroke-width: 2px;
 }
 

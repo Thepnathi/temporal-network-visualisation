@@ -1,0 +1,267 @@
+node1,node2,tstart,tend,line
+Loughton,Debden,456,458,Central line to Debden
+Debden,Theydon Bois,458,461,Central line to Theydon Bois
+Theydon Bois,Epping,502,504,Central line to Epping
+Epping,Theydon Bois,510,512,Central line to Theydon Bois
+Loughton,Debden,511,513,Central line to Debden
+Debden,Theydon Bois,513,516,Central line to Theydon Bois
+White City,East Acton,514,516,Central line to East Acton
+Debden,Loughton,516,519,Central line to Loughton
+East Acton,North Acton,516,518,Central line to North Acton
+Loughton,Debden,516,518,Central line to Debden
+Theydon Bois,Epping,517,519,Central line to Epping
+North Acton,West Acton,518,520,Central line to West Acton
+Loughton,Buckhurst Hill,519,521,Central line to Buckhurst Hill
+Debden,Theydon Bois,519,522,Central line to Theydon Bois
+Fairlop,Barkingside,520,521,Central line to Barkingside
+West Acton,Ealing Broadway,521,523,Central line to Ealing Broadway
+Buckhurst Hill,Woodford,522,524,Central line to Woodford
+Woodford,Buckhurst Hill,522,524,Central line to Buckhurst Hill
+Barkingside,Newbury Park,522,524,Central line to Newbury Park
+Theydon Bois,Epping,522,524,Central line to Epping
+Loughton,Debden,522,524,Central line to Debden
+Newbury Park,Gants Hill,524,527,Central line to Gants Hill
+Woodford,South Woodford,524,526,Central line to South Woodford
+Buckhurst Hill,Loughton,524,527,Central line to Loughton
+Debden,Theydon Bois,525,528,Central line to Theydon Bois
+Epping,Theydon Bois,525,527,Central line to Theydon Bois
+White City,East Acton,526,528,Central line to East Acton
+Ruislip Gardens,South Ruislip,526,527,Central line to South Ruislip
+Grange Hill,Chigwell,526,528,Central line to Chigwell
+Gants Hill,Redbridge,527,528,Central line to Redbridge
+South Ruislip,Northolt,527,530,Central line to Northolt
+Loughton,Debden,527,529,Central line to Debden
+South Woodford,Snaresbrook,527,529,Central line to Snaresbrook
+Theydon Bois,Epping,528,530,Central line to Epping
+Fairlop,Barkingside,528,529,Central line to Barkingside
+East Acton,North Acton,528,530,Central line to North Acton
+Chigwell,Roding Valley,528,531,Central line to Roding Valley
+Redbridge,Wanstead,529,531,Central line to Wanstead
+Ealing Broadway,West Acton,529,531,Central line to West Acton
+Debden,Theydon Bois,529,532,Central line to Theydon Bois
+Northolt,Greenford,530,532,Central line to Greenford
+Barkingside,Newbury Park,530,532,Central line to Newbury Park
+North Acton,West Acton,530,532,Central line to West Acton
+Wanstead,Leytonstone,531,534,Central line to Leytonstone
+Roding Valley,Woodford,532,534,Central line to Woodford
+Greenford,Perivale,532,534,Central line to Perivale
+Newbury Park,Gants Hill,532,535,Central line to Gants Hill
+Debden,Loughton,532,535,Central line to Loughton
+Loughton,Debden,532,534,Central line to Debden
+Leytonstone,Leyton,532,534,Central line to Leyton
+Woodford,Buckhurst Hill,533,535,Central line to Buckhurst Hill
+Epping,Theydon Bois,533,535,Central line to Theydon Bois
+Theydon Bois,Epping,533,535,Central line to Epping
+White City,Shepherd's Bush (Central),533,535,Central line to Shepherd's Bush (Central)
+West Acton,Ealing Broadway,533,535,Central line to Ealing Broadway
+North Acton,East Acton,534,535,Central line to East Acton
+Perivale,Hanger Lane,534,536,Central line to Hanger Lane
+Leyton,Stratford,534,536,Central line to Stratford
+Woodford,South Woodford,534,536,Central line to South Woodford
+Gants Hill,Redbridge,535,536,Central line to Redbridge
+Debden,Theydon Bois,535,538,Central line to Theydon Bois
+Leytonstone,Leyton,535,537,Central line to Leyton
+Loughton,Buckhurst Hill,535,537,Central line to Buckhurst Hill
+Buckhurst Hill,Loughton,535,538,Central line to Loughton
+White City,East Acton,536,538,Central line to East Acton
+Shepherd's Bush (Central),Holland Park,536,537,Central line to Holland Park
+South Woodford,Snaresbrook,536,538,Central line to Snaresbrook
+Hanger Lane,North Acton,537,540,Central line to North Acton
+Leyton,Stratford,537,539,Central line to Stratford
+Buckhurst Hill,Woodford,537,539,Central line to Woodford
+Redbridge,Wanstead,537,539,Central line to Wanstead
+Holland Park,Notting Hill Gate,538,539,Central line to Notting Hill Gate
+Loughton,Debden,538,540,Central line to Debden
+Theydon Bois,Epping,538,540,Central line to Epping
+Fairlop,Barkingside,538,539,Central line to Barkingside
+East Acton,North Acton,538,540,Central line to North Acton
+Snaresbrook,South Woodford,538,540,Central line to South Woodford
+White City,East Acton,539,541,Central line to East Acton
+White City,Shepherd's Bush (Central),539,541,Central line to Shepherd's Bush (Central)
+Wanstead,Leytonstone,539,542,Central line to Leytonstone
+Notting Hill Gate,Queensway,539,540,Central line to Queensway
+Debden,Loughton,539,542,Central line to Loughton
+Barkingside,Newbury Park,540,542,Central line to Newbury Park
+Woodford,South Woodford,540,542,Central line to South Woodford
+South Woodford,Woodford,540,542,Central line to Woodford
+North Acton,East Acton,540,541,Central line to East Acton
+Mile End,Bethnal Green,540,542,Central line to Bethnal Green
+Epping,Theydon Bois,540,542,Central line to Theydon Bois
+North Acton,West Acton,540,542,Central line to West Acton
+Ruislip Gardens,South Ruislip,540,541,Central line to South Ruislip
+Ealing Broadway,West Acton,541,543,Central line to West Acton
+Queensway,Lancaster Gate,541,542,Central line to Lancaster Gate
+Debden,Theydon Bois,541,544,Central line to Theydon Bois
+South Woodford,Snaresbrook,542,544,Central line to Snaresbrook
+East Acton,North Acton,542,544,Central line to North Acton
+Lancaster Gate,Marble Arch,542,544,Central line to Marble Arch
+Newbury Park,Gants Hill,542,545,Central line to Gants Hill
+Leytonstone,Leyton,542,544,Central line to Leyton
+South Ruislip,Northolt,542,545,Central line to Northolt
+Shepherd's Bush (Central),Holland Park,542,543,Central line to Holland Park
+Mile End,Bethnal Green,543,545,Central line to Bethnal Green
+Loughton,Buckhurst Hill,543,545,Central line to Buckhurst Hill
+West Acton,Ealing Broadway,543,545,Central line to Ealing Broadway
+Bethnal Green,Liverpool Street,543,546,Central line to Liverpool Street
+Woodford,Buckhurst Hill,543,545,Central line to Buckhurst Hill
+Northolt,Greenford,544,546,Central line to Greenford
+Holland Park,Notting Hill Gate,544,545,Central line to Notting Hill Gate
+Leyton,Stratford,544,546,Central line to Stratford
+Buckhurst Hill,Loughton,545,548,Central line to Loughton
+White City,Shepherd's Bush (Central),545,547,Central line to Shepherd's Bush (Central)
+Fairlop,Barkingside,545,546,Central line to Barkingside
+Gants Hill,Redbridge,545,546,Central line to Redbridge
+Notting Hill Gate,Queensway,545,546,Central line to Queensway
+Buckhurst Hill,Woodford,545,547,Central line to Woodford
+Marble Arch,Bond Street,545,546,Central line to Bond Street
+Ruislip Gardens,South Ruislip,546,547,Central line to South Ruislip
+Debden,Loughton,546,549,Central line to Loughton
+Redbridge,Wanstead,546,548,Central line to Wanstead
+Theydon Bois,Epping,546,548,Central line to Epping
+Liverpool Street,Bank,546,548,Central line to Bank
+Bethnal Green,Liverpool Street,546,549,Central line to Liverpool Street
+North Acton,East Acton,546,547,Central line to East Acton
+Epping,Theydon Bois,547,549,Central line to Theydon Bois
+Leytonstone,Leyton,547,549,Central line to Leyton
+Greenford,Perivale,547,549,Central line to Perivale
+Barkingside,Newbury Park,547,549,Central line to Newbury Park
+White City,East Acton,547,549,Central line to East Acton
+Queensway,Lancaster Gate,547,548,Central line to Lancaster Gate
+Woodford,Buckhurst Hill,548,550,Central line to Buckhurst Hill
+Lancaster Gate,Marble Arch,548,550,Central line to Marble Arch
+Oxford Circus,Tottenham Court Road,548,549,Central line to Tottenham Court Road
+Loughton,Debden,548,550,Central line to Debden
+Wanstead,Leytonstone,548,551,Central line to Leytonstone
+Woodford,South Woodford,548,550,Central line to South Woodford
+Shepherd's Bush (Central),Holland Park,548,549,Central line to Holland Park
+South Ruislip,Northolt,548,551,Central line to Northolt
+Tottenham Court Road,Holborn,549,551,Central line to Holborn
+Newbury Park,Gants Hill,549,552,Central line to Gants Hill
+Perivale,Hanger Lane,549,551,Central line to Hanger Lane
+Loughton,Buckhurst Hill,549,551,Central line to Buckhurst Hill
+Grange Hill,Chigwell,549,551,Central line to Chigwell
+East Acton,North Acton,549,551,Central line to North Acton
+Mile End,Bethnal Green,550,552,Central line to Bethnal Green
+Liverpool Street,Bank,550,552,Central line to Bank
+Buckhurst Hill,Loughton,550,553,Central line to Loughton
+Debden,Theydon Bois,550,553,Central line to Theydon Bois
+South Woodford,Snaresbrook,550,552,Central line to Snaresbrook
+St. Paul's,Chancery Lane,550,552,Central line to Chancery Lane
+Holland Park,Notting Hill Gate,550,551,Central line to Notting Hill Gate
+Leyton,Stratford,550,552,Central line to Stratford
+Ruislip Gardens,South Ruislip,551,552,Central line to South Ruislip
+Northolt,Greenford,551,553,Central line to Greenford
+White City,Shepherd's Bush (Central),551,553,Central line to Shepherd's Bush (Central)
+Notting Hill Gate,Queensway,551,552,Central line to Queensway
+Chigwell,Roding Valley,551,554,Central line to Roding Valley
+Holborn,Chancery Lane,551,552,Central line to Chancery Lane
+North Acton,East Acton,551,552,Central line to East Acton
+Hanger Lane,North Acton,551,554,Central line to North Acton
+North Acton,West Acton,551,553,Central line to West Acton
+Marble Arch,Bond Street,551,552,Central line to Bond Street
+Chancery Lane,St. Paul's,552,553,Central line to St. Paul's
+White City,East Acton,552,554,Central line to East Acton
+Leytonstone,Leyton,552,554,Central line to Leyton
+Snaresbrook,South Woodford,552,554,Central line to South Woodford
+Gants Hill,Redbridge,552,553,Central line to Redbridge
+Fairlop,Barkingside,552,553,Central line to Barkingside
+Buckhurst Hill,Woodford,552,554,Central line to Woodford
+Chancery Lane,Holborn,552,553,Central line to Holborn
+South Ruislip,Northolt,552,555,Central line to Northolt
+Ealing Broadway,West Acton,553,555,Central line to West Acton
+Holborn,Tottenham Court Road,553,554,Central line to Tottenham Court Road
+Bethnal Green,Liverpool Street,553,556,Central line to Liverpool Street
+Barkingside,Newbury Park,553,555,Central line to Newbury Park
+Queensway,Lancaster Gate,553,554,Central line to Lancaster Gate
+Greenford,Perivale,553,555,Central line to Perivale
+Loughton,Debden,553,555,Central line to Debden
+Epping,Theydon Bois,553,555,Central line to Theydon Bois
+Debden,Loughton,553,556,Central line to Loughton
+South Woodford,Woodford,554,556,Central line to Woodford
+St. Paul's,Bank,554,556,Central line to Bank
+Oxford Circus,Tottenham Court Road,554,555,Central line to Tottenham Court Road
+East Acton,North Acton,554,556,Central line to North Acton
+Theydon Bois,Epping,554,556,Central line to Epping
+Leyton,Stratford,554,556,Central line to Stratford
+St. Paul's,Chancery Lane,554,556,Central line to Chancery Lane
+West Acton,Ealing Broadway,554,556,Central line to Ealing Broadway
+Lancaster Gate,Marble Arch,554,556,Central line to Marble Arch
+Shepherd's Bush (Central),Holland Park,554,555,Central line to Holland Park
+Redbridge,Wanstead,554,556,Central line to Wanstead
+Roding Valley,Woodford,554,556,Central line to Woodford
+Tottenham Court Road,Holborn,555,557,Central line to Holborn
+Newbury Park,Gants Hill,555,558,Central line to Gants Hill
+Leytonstone,Leyton,555,557,Central line to Leyton
+North Acton,East Acton,555,556,Central line to East Acton
+Northolt,Greenford,555,557,Central line to Greenford
+Tottenham Court Road,Oxford Circus,555,556,Central line to Oxford Circus
+Perivale,Hanger Lane,555,557,Central line to Hanger Lane
+Woodford,South Woodford,555,557,Central line to South Woodford
+White City,Shepherd's Bush (Central),556,558,Central line to Shepherd's Bush (Central)
+Liverpool Street,Bank,556,558,Central line to Bank
+Debden,Theydon Bois,556,559,Central line to Theydon Bois
+Loughton,Buckhurst Hill,556,558,Central line to Buckhurst Hill
+North Acton,West Acton,556,558,Central line to West Acton
+Chancery Lane,Holborn,556,557,Central line to Holborn
+Bank,Liverpool Street,556,558,Central line to Liverpool Street
+Mile End,Bethnal Green,556,558,Central line to Bethnal Green
+Holland Park,Notting Hill Gate,556,557,Central line to Notting Hill Gate
+Wanstead,Leytonstone,556,559,Central line to Leytonstone
+Holborn,Tottenham Court Road,557,558,Central line to Tottenham Court Road
+Woodford,South Woodford,557,559,Central line to South Woodford
+Marble Arch,Bond Street,557,558,Central line to Bond Street
+Hanger Lane,North Acton,557,560,Central line to North Acton
+Greenford,Perivale,557,559,Central line to Perivale
+Holborn,Chancery Lane,557,558,Central line to Chancery Lane
+Notting Hill Gate,Queensway,557,558,Central line to Queensway
+Woodford,Buckhurst Hill,557,559,Central line to Buckhurst Hill
+White City,East Acton,557,559,Central line to East Acton
+South Woodford,Snaresbrook,557,559,Central line to Snaresbrook
+Liverpool Street,Bethnal Green,558,561,Central line to Bethnal Green
+Bond Street,Marble Arch,558,559,Central line to Marble Arch
+Leyton,Stratford,558,560,Central line to Stratford
+Gants Hill,Redbridge,558,559,Central line to Redbridge
+North Acton,East Acton,558,559,Central line to East Acton
+Chancery Lane,St. Paul's,558,559,Central line to St. Paul's
+Bethnal Green,Liverpool Street,559,562,Central line to Liverpool Street
+South Woodford,Snaresbrook,559,561,Central line to Snaresbrook
+Perivale,Hanger Lane,559,561,Central line to Hanger Lane
+Queensway,Lancaster Gate,559,560,Central line to Lancaster Gate
+Shepherd's Bush (Central),Holland Park,559,560,Central line to Holland Park
+Loughton,Debden,559,561,Central line to Debden
+Leytonstone,Leyton,559,561,Central line to Leyton
+Tottenham Court Road,Oxford Circus,559,560,Central line to Oxford Circus
+Fairlop,Barkingside,559,560,Central line to Barkingside
+Buckhurst Hill,Loughton,559,562,Central line to Loughton
+Marble Arch,Lancaster Gate,559,560,Central line to Lancaster Gate
+East Acton,North Acton,559,561,Central line to North Acton
+Theydon Bois,Epping,559,561,Central line to Epping
+Buckhurst Hill,Woodford,559,561,Central line to Woodford
+Mile End,Bethnal Green,600,602,Central line to Bethnal Green
+Debden,Loughton,600,603,Central line to Loughton
+Holland Park,Notting Hill Gate,600,601,Central line to Notting Hill Gate
+St. Paul's,Chancery Lane,600,602,Central line to Chancery Lane
+Redbridge,Wanstead,600,602,Central line to Wanstead
+Epping,Theydon Bois,600,602,Central line to Theydon Bois
+Ruislip Gardens,South Ruislip,600,601,Central line to South Ruislip
+White City,Shepherd's Bush (Central),600,602,Central line to Shepherd's Bush (Central)
+Oxford Circus,Tottenham Court Road,600,601,Central line to Tottenham Court Road
+Hanger Lane,Perivale,600,602,Central line to Perivale
+St. Paul's,Bank,600,602,Central line to Bank
+Lancaster Gate,Marble Arch,600,602,Central line to Marble Arch
+North Acton,West Acton,601,603,Central line to West Acton
+Bond Street,Marble Arch,601,602,Central line to Marble Arch
+Tottenham Court Road,Holborn,601,603,Central line to Holborn
+Leyton,Stratford,601,603,Central line to Stratford
+Barkingside,Newbury Park,601,603,Central line to Newbury Park
+Lancaster Gate,Queensway,601,603,Central line to Queensway
+Debden,Theydon Bois,601,604,Central line to Theydon Bois
+Bethnal Green,Mile End,601,603,Central line to Mile End
+Hainault,Grange Hill,601,603,Central line to Grange Hill
+South Ruislip,Northolt,602,605,Central line to Northolt
+North Acton,East Acton,602,603,Central line to East Acton
+Woodford,South Woodford,602,604,Central line to South Woodford
+Leytonstone,Leyton,602,604,Central line to Leyton
+Notting Hill Gate,Queensway,602,603,Central line to Queensway
+Wanstead,Leytonstone,602,605,Central line to Leytonstone
+Liverpool Street,Bank,602,604,Central line to Bank

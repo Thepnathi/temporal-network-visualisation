@@ -22,33 +22,8 @@ let edgeLabelSwitch = true;
 
 const updateGraphNetworkTitle = d3.select("#temporal-graph-network-title").text(pageTitle)
 
-// Initialise the time range slider
-function updateSlider(startTime, endTime) {
-    let updateStartLabel = d3.select("#sliderStartValue").text(startTime)
-    let updateSliderStart = d3.select("#sliderStart")
-        .attr("min", startTime)
-        .attr("max", endTime)
-        .attr("value", startTime)
-    let updateEndLabel = d3.select("#sliderEndValue").text(endTime)
-    let updateSliderEnd = d3.select("#sliderEnd")
-        .attr("min", startTime)
-        .attr("max", endTime)
-        .attr("value", endTime)
-}
-
-async function main() {
-    await initialiseData()
-    startTime = getStartTimeRange(edges)
-    endTime = getEndTimeRange(edges)
-    updateSlider(startTime, endTime)
-    initialiseTemporalGraphNetwork(startTime, endTime)
-}
-
-main()
-
 function temporalGraphNetwork(vertices, edges, enableVerticeLabel, enableEdgeLabel) {
-    // updateSlider(edges)
-        // Initialise the SVG canvas for d3.js
+    // Initialise the SVG canvas for d3.js
     const svg = d3.select("#visualisation")
         .append("svg")
                 .attr("width", width)
@@ -126,6 +101,12 @@ function temporalGraphNetwork(vertices, edges, enableVerticeLabel, enableEdgeLab
 
     function tick() {
         addEdges 
+                .attr("stroke", function(d){
+                    if (d.start >= (startTime + endTime) / 2) {
+                        return "#191919"
+                    }
+                    return "#C0C0C0"
+                })
                 .attr("d", function(d) {
                 var dr = 75/d.linknum; 
                 return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;

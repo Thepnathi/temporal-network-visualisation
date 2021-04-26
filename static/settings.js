@@ -36,4 +36,3 @@ function getEndTimeRange(edges) {
     }
     return max;
 }
-

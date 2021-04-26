@@ -29,7 +29,7 @@ class DiTemporalGraphNetwork_Visualisation(GraphNetwork_Visualisation):
         json_dataset = {}
         json_dataset['nodes'] = self.node_labels
         json_dataset['edges'] = []
-        for i in range(len(self.node_labels)):
+        for i in range(len(self.edge_labels)):
             edge = {}
             source_and_target = self.edge_labels[i].split("-") 
             edge['source'] = source_and_target[0]
@@ -39,8 +39,7 @@ class DiTemporalGraphNetwork_Visualisation(GraphNetwork_Visualisation):
             json_dataset['edges'].append(edge)
         return json.dumps(json_dataset)
 
-
-central = ot.TemporalDiGraph('CentralLine', data=ot.CsvInput('./data/central-inbound.csv'))
-visual = DiTemporalGraphNetwork_Visualisation(central)
+underground = ot.TemporalDiGraph('UndergroundLine', data=ot.CsvInput('./data/mini_underground_all.csv'))
+visual = DiTemporalGraphNetwork_Visualisation(underground)
 res = visual.parse_graph_to_json()
 print(res)
