@@ -15,8 +15,8 @@ def temporal_network():
 
 @app.route("/dataset")
 def dataset():
-    central = ot.TemporalDiGraph('UndergroundLine', data=ot.CsvInput('./data/mini_underground_all.csv'))
-    visual = DiTemporalGraphNetwork_Visualisation(central)
+    underground = ot.TemporalDiGraph('UndergroundLine', data=ot.CsvInput('./data/mini_underground_all.csv'))
+    visual = DiTemporalGraphNetwork_Visualisation(underground)
     res = visual.parse_graph_to_json()
     return res
 

@@ -1,6 +1,7 @@
 const disableVerticesLabels = document.getElementById("verticeLabelBtn");
 const disableEdgesLabels = document.getElementById("edgeLabelBtn");
 
+// The event handler which enables/disables vertices label
 disableVerticesLabels.addEventListener("click", function() {
     d3.select("svg").remove()
     initialiseData()
@@ -13,6 +14,7 @@ disableVerticesLabels.addEventListener("click", function() {
     initialiseTemporalGraphNetwork(startTime, endTime, verticeLabelSwitch)
 });
 
+// The event handler which enables/disables vertices label
 disableEdgesLabels.addEventListener("click", function() {
     d3.select("svg").remove()
     initialiseData()

@@ -1,10 +1,9 @@
 const width = windowWidth()*0.9;
 const height = windowHeight()*0.9;   
-const pageTitle = "London Underground Network";
+const pageTitle = "London Underground - Jubilee Line";
 
 var vertices;
 var edges;
-
 let startTime;
 let endTime;
 

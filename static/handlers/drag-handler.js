@@ -1,3 +1,5 @@
+
+// Requires the force simulation as param
 function drag(simulation) {
     const dragstarted = event => {
         if (!event.active) simulation.alphaTarget(0.3).restart();

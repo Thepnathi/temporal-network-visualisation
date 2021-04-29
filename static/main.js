@@ -1,3 +1,5 @@
+// This is the main file
+
 async function main() {
     await initialiseData()
     startTime = getStartTimeRange(edges)
