@@ -1,5 +1,8 @@
 var vertices;
 var edges;
+var verticesNameIndex = {};
+var centralityDegreeTracker = new Set();
+
 
 async function getDataset() {
     let response = await fetch("http://localhost:5000/dataset");
@@ -56,8 +59,11 @@ async function initialiseData() {
             indexColor = 0;
         }
         vertices[i].color = COLOURS[indexColor];
+        vertices[i].degree = 0;
+        verticesNameIndex[vertices[i].name] = i;
         indexColor += 1;
     }
+    console.log(vertices)
     return true;
 }
 

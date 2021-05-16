@@ -7,6 +7,11 @@ function mouseoverVertex() {
         .attr("dx", 20)
         .attr("dy", ".40em")
         .attr("font-size", largerVertexFontSize)
+
+    selectedVertex = d3.select(this).attr("id");
+    console.log(selectedVertex)
+    degree = vertices[verticesNameIndex[selectedVertex]].degree;
+    console.log(selectedVertex + " neighbours: " + degree);
 }
 
 function mouseoutVertex() {

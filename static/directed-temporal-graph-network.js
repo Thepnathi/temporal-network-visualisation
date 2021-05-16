@@ -106,6 +106,16 @@ function temporalGraphNetwork(vertices, edges, enableVerticeLabel, enableEdgeLab
                     }
                     return "#C0C0C0"
                 })
+                .attr("", function(d) {
+                    let neightbour1 = d.source.name + d.target.name;
+                    let neightbour2 = d.target.name + d.source.name;
+                    if (!centralityDegreeTracker.has(neightbour1) && !centralityDegreeTracker.has(neightbour2)) {
+                        centralityDegreeTracker.add(neightbour1);
+                        centralityDegreeTracker.add(neightbour2);
+                        vertices[verticesNameIndex[d.source.name]].degree += 1;
+                        vertices[verticesNameIndex[d.target.name]].degree += 1;
+                    }
+                })
                 .attr("d", function(d) {
                 var dr = 75/d.linknum; 
                 return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
@@ -116,6 +126,7 @@ function temporalGraphNetwork(vertices, edges, enableVerticeLabel, enableEdgeLab
                 .text(d => enableEdgeLabel ? d.start : "")
 
         addVertices
+                .attr("id", d => d.name)
                 .attr("fill", d => d.color)
                 .attr("transform", d => "translate(" + d.x + "," + d.y + ")")
      }
@@ -123,6 +134,7 @@ function temporalGraphNetwork(vertices, edges, enableVerticeLabel, enableEdgeLab
 
 function initialiseTemporalGraphNetwork(startTime, endTime) {
         let updatedLinks = edges.filter(link => link.start >= startTime && link.end <= endTime)
+        centralityDegreeTracker = new Set();
         temporalGraphNetwork(vertices, updatedLinks, verticeLabelSwitch, edgeLabelSwitch) 
 }
 
