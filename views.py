@@ -13,7 +13,7 @@ def temporal_network():
 
 @app.route("/dataset")
 def dataset():      # This is hardcode example of dataset, in the future the user can select their own file 
-    underground = ot.TemporalDiGraph('UndergroundLine', data=ot.CsvInput('./data/mini_underground_all.csv'))
+    underground = ot.TemporalDiGraph('UndergroundLine', data=ot.CsvInput('./data/mini_jubilee.csv'))
     visual = Temporal_DiGraph_Network_Parser(underground)
     res = visual.parse_graph_to_json()
     return res
